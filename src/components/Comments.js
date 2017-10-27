@@ -7,7 +7,7 @@ class Comments extends Component {
             <div className="comments">
                 <p>comments</p>
                 {comments.map((comment) => 
-                    <p>{comment}</p>
+                    <div className='row'>{comment}</div>
                 )}
             </div>
         );
