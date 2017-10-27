@@ -1,16 +1,18 @@
 import React, { Component } from 'react';
+import 'bootstrap/dist/css/bootstrap.css';
 import logo from '../logo.svg';
 import '../styles/App.css';
 import Articles from './Articles';
-import Comments from './Comments';
-import Topics from './Topics';
+import Header from './Header';
+
 class App extends Component {
   render() {
     return (
+
       <div className="App">
-        <Topics />
+        <Header />
         <Articles />
-        <Comments />
+        
       </div>
     );
   }
