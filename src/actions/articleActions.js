@@ -1,8 +1,24 @@
 import * as types from '../types';
 import axios from 'axios';
-const URL = 'http://localhost:3080/';
+const ROOT = 'http://localhost:3080/';
 
-
+export function fetchAllArticles (topic) {
+    return function (dispatch) {
+        let getURL = ROOT;
+        getURL += topic 
+        ? `/topics/${topic}/articles` 
+        : '/articles';
+        dispatch(fetchArticlesRequest());
+        axios
+            .get(getURL)
+            .then(res => {
+                dispatch(fetchArticlesSuccess(res.data.articles));
+            })
+            .catch(err => {
+                dispatch(fetchArticlesFailure(err));
+            });
+    };
+}
 
 export function fetchArticlesRequest () {
 	return {
