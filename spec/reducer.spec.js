@@ -25,7 +25,7 @@ describe('REDUCER', () => {
             expect(initialState).to.not.eql(newstate);
             expect(newstate.articles).to.eql(exp);
         });
-        it('should update the state correctly for fetchArticles', () => {
+        it('should update the state correctly for fetchArticlesFailure', () => {
             const action = fetchArticlesFailure('error');
             const newstate = articlesReducer(initialState, action);
             expect(initialState).to.not.eql(newstate);
