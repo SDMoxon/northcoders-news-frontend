@@ -1,6 +1,6 @@
 import {expect} from 'chai';
 import {fetchArticlesRequest, fetchArticlesSuccess, fetchArticlesFailure} from '../../src/actions/articleActions';
-import {initialState, articlesReducer} from '../../src/reducers/artclesReducer';
+import {initialState, articlesReducer} from '../../src/reducers/articlesReducer';
 
 describe('ARTICLES REDUCER', () => {
     describe('action: fetchArticles', () => {
