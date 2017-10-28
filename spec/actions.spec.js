@@ -2,8 +2,6 @@ import { expect } from 'chai';
 import * as actions from '../src/actions';
 import * as types from '../src/types';
 
-
-
 describe('actions', () => {
     describe('fetchArticles', () => {
         it('should return the correct action for fetchArticles', () => {
