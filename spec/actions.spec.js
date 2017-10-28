@@ -26,4 +26,46 @@ describe('actions', () => {
             });
         });
     });
+    describe('fetchComments', () => {
+        it('should return the correct action for fetchComments', () => {
+            expect(actions.fetchComments()).to.eql({
+                type: types.FETCH_COMMENTS_REQUEST
+            });
+        });
+        it('should return the correct action for fetchCommentsSuccess', () => {
+            const payload = 123456;
+            expect(actions.fetchCommentsSuccess(payload)).to.eql({
+                type: types.FETCH_COMMENTS_SUCCESS,
+               payload: payload
+            });
+        });
+        it('should return the correct action for fetchCommentsFailure', () => {
+            const error = 'error';
+            expect(actions.fetchCommentsFailure(error)).to.eql({
+                type: types.FETCH_COMMENTS_FAILURE,
+                payload: error
+            });
+        });
+    });
+    describe('fetchTopics', () => {
+        it('should return the correct action for fetchTopics', () => {
+            expect(actions.fetchTopics()).to.eql({
+                type: types.FETCH_TOPICS_REQUEST
+            });
+        });
+        it('should return the correct action for fetchTopicsSuccess', () => {
+            const payload = 123456;
+            expect(actions.fetchTopicsSuccess(payload)).to.eql({
+                type: types.FETCH_TOPICS_SUCCESS,
+               payload: payload
+            });
+        });
+        it('should return the correct action for fetchTopicsFailure', () => {
+            const error = 'error';
+            expect(actions.fetchTopicsFailure(error)).to.eql({
+                type: types.FETCH_TOPICS_FAILURE,
+                payload: error
+            });
+        });
+    });
 });
