@@ -1,5 +1,20 @@
 import * as types from '../types';
 import axios from 'axios';
+const ROOT = 'http://localhost:3080/';
+
+export function fetchAllTopics () {
+    return function (dispatch) {
+        dispatch(fetchTopicsRequest());
+        axios
+            .get(`${ROOT}/topics`)
+            .then(res => {
+                dispatch(fetchTopicsSuccess(res.data.topics));
+            })
+            .catch(err => {
+                dispatch(fetchTopicsFailure(err));
+            });
+    };
+}
 
 export function fetchTopicsRequest () {
 	return {
