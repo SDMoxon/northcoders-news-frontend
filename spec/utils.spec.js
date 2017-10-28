@@ -1,7 +1,7 @@
 import { expect } from 'chai';
 import * as utils from '../utils';
 
-describe.only('normaliseData', () => {
+describe('normaliseData', () => {
     const data = [
       { _id: 50, title: 'cooking' },
       { _id: 23, title: 'coding' },
