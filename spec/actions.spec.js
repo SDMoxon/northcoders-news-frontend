@@ -1,24 +1,26 @@
 import { expect } from 'chai';
-import * as actions from '../src/actions/articleActions';
+import * as articleActions from '../src/actions/articleActions';
+import * as topicActions from '../src/actions/topicActions';
+import * as commentActions from '../src/actions/commentActions';
 import * as types from '../src/types';
 
 describe('actions', () => {
     describe('fetchArticles', () => {
         it('should return the correct action for fetchArticles', () => {
-            expect(actions.fetchArticles()).to.eql({
+            expect(articleActions.fetchArticles()).to.eql({
                 type: types.FETCH_ARTICLES_REQUEST
             });
         });
         it('should return the correct action for fetchArticlesSuccess', () => {
             const payload = 123456;
-            expect(actions.fetchArticlesSuccess(payload)).to.eql({
+            expect(articleActions.fetchArticlesSuccess(payload)).to.eql({
                 type: types.FETCH_ARTICLES_SUCCESS,
                payload: payload
             });
         });
         it('should return the correct action for fetchArticlesFailure', () => {
             const error = 'error';
-            expect(actions.fetchArticlesFailure(error)).to.eql({
+            expect(articleActions.fetchArticlesFailure(error)).to.eql({
                 type: types.FETCH_ARTICLES_FAILURE,
                 payload: error
             });
@@ -26,20 +28,20 @@ describe('actions', () => {
     });
     describe('fetchComments', () => {
         it('should return the correct action for fetchComments', () => {
-            expect(actions.fetchComments()).to.eql({
+            expect(commentActions.fetchComments()).to.eql({
                 type: types.FETCH_COMMENTS_REQUEST
             });
         });
         it('should return the correct action for fetchCommentsSuccess', () => {
             const payload = 123456;
-            expect(actions.fetchCommentsSuccess(payload)).to.eql({
+            expect(commentActions.fetchCommentsSuccess(payload)).to.eql({
                 type: types.FETCH_COMMENTS_SUCCESS,
                payload: payload
             });
         });
         it('should return the correct action for fetchCommentsFailure', () => {
             const error = 'error';
-            expect(actions.fetchCommentsFailure(error)).to.eql({
+            expect(commentActions.fetchCommentsFailure(error)).to.eql({
                 type: types.FETCH_COMMENTS_FAILURE,
                 payload: error
             });
@@ -47,20 +49,20 @@ describe('actions', () => {
     });
     describe('fetchTopics', () => {
         it('should return the correct action for fetchTopics', () => {
-            expect(actions.fetchTopics()).to.eql({
+            expect(topicActions.fetchTopics()).to.eql({
                 type: types.FETCH_TOPICS_REQUEST
             });
         });
         it('should return the correct action for fetchTopicsSuccess', () => {
             const payload = 123456;
-            expect(actions.fetchTopicsSuccess(payload)).to.eql({
+            expect(topicActions.fetchTopicsSuccess(payload)).to.eql({
                 type: types.FETCH_TOPICS_SUCCESS,
                payload: payload
             });
         });
         it('should return the correct action for fetchTopicsFailure', () => {
             const error = 'error';
-            expect(actions.fetchTopicsFailure(error)).to.eql({
+            expect(topicActions.fetchTopicsFailure(error)).to.eql({
                 type: types.FETCH_TOPICS_FAILURE,
                 payload: error
             });
