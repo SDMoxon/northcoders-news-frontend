@@ -1,5 +1,5 @@
 import { expect } from 'chai';
-import * as actions from '../src/actions';
+import * as actions from '../src/actions/articleActions';
 import * as types from '../src/types';
 
 describe('actions', () => {
