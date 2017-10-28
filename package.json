@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "axios": "^0.17.0",
     "react": "^16.0.0",
     "react-dom": "^16.0.0",
     "react-redux": "^5.0.6",
@@ -13,10 +14,11 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test --env=jsdom",
+    "test": "NODE_ENV=test mocha --compilers js:babel-core/register spec/*",
     "eject": "react-scripts eject"
   },
   "devDependencies": {
+    "babel-preset-react-app": "^3.0.3",
     "bootstrap": "^3.3.7"
   }
 }
