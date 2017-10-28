@@ -8,7 +8,7 @@ describe('actions', () => {
     //  Articles Actions
     describe('fetchArticles', () => {
         it('should return the correct action for fetchArticles', () => {
-            expect(articleActions.fetchArticles()).to.eql({
+            expect(articleActions.fetchArticlesRequest()).to.eql({
                 type: types.FETCH_ARTICLES_REQUEST
             });
         });
@@ -30,7 +30,7 @@ describe('actions', () => {
     //  Comments Actions
     describe('fetchComments', () => {
         it('should return the correct action for fetchComments', () => {
-            expect(commentActions.fetchComments()).to.eql({
+            expect(commentActions.fetchCommentsRequest()).to.eql({
                 type: types.FETCH_COMMENTS_REQUEST
             });
         });
@@ -52,7 +52,7 @@ describe('actions', () => {
     //  Topics Actions
     describe('fetchTopics', () => {
         it('should return the correct action for fetchTopics', () => {
-            expect(topicActions.fetchTopics()).to.eql({
+            expect(topicActions.fetchTopicsRequest()).to.eql({
                 type: types.FETCH_TOPICS_REQUEST
             });
         });

@@ -1,11 +1,11 @@
 import {expect} from 'chai';
-import {fetchArticles, fetchArticlesSuccess, fetchArticlesFailure} from '../../src/actions/articleActions';
+import {fetchArticlesRequest, fetchArticlesSuccess, fetchArticlesFailure} from '../../src/actions/articleActions';
 import {initialState, articlesReducer} from '../../src/reducers/artclesReducer';
 
 describe('ARTICLES REDUCER', () => {
     describe('action: fetchArticles', () => {
         it('should update the state correctly for fetchArticles', () => {
-            const action = fetchArticles();
+            const action = fetchArticlesRequest();
             const newstate = articlesReducer(initialState, action);
             expect(initialState).to.not.eql(newstate);
         });

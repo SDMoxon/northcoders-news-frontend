@@ -1,5 +1,7 @@
 import * as types from '../types';
 import {normaliseData} from '../../utils';
+
+
 export const initialState = {
     articles: {},
     loading: false,

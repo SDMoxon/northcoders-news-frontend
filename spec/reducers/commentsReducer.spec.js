@@ -1,11 +1,11 @@
 import {expect} from 'chai';
-import {fetchComments, fetchCommentsSuccess, fetchCommentsFailure} from '../../src/actions/commentActions';
+import {fetchCommentsRequest, fetchCommentsSuccess, fetchCommentsFailure} from '../../src/actions/commentActions';
 import {initialState, commentsReducer} from '../../src/reducers/commentsReducer';
 
 describe('COMMENTS REDUCER', () => {
     describe('action: fetchComments', () => {
         it('should update the state correctly for fetchComments', () => {
-            const action = fetchComments();
+            const action = fetchCommentsRequest();
             const newstate = commentsReducer(initialState, action);
             expect(initialState).to.not.eql(newstate);
         });

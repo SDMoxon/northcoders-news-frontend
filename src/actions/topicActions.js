@@ -1,7 +1,7 @@
 import * as types from '../types';
 import axios from 'axios';
 
-export function fetchTopics () {
+export function fetchTopicsRequest () {
 	return {
 		type: types.FETCH_TOPICS_REQUEST,
 	};

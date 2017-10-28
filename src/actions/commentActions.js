@@ -1,7 +1,7 @@
 import * as types from '../types';
 import axios from 'axios';
 
-export function fetchComments () {
+export function fetchCommentsRequest () {
 	return {
 		type: types.FETCH_COMMENTS_REQUEST,
 	};

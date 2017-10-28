@@ -1,7 +1,10 @@
 import * as types from '../types';
 import axios from 'axios';
+const URL = 'http://localhost:3080/';
 
-export function fetchArticles () {
+
+
+export function fetchArticlesRequest () {
 	return {
 		type: types.FETCH_ARTICLES_REQUEST,
 	};
