@@ -5,6 +5,7 @@ import * as commentActions from '../src/actions/commentActions';
 import * as types from '../src/types';
 
 describe('actions', () => {
+    //  Articles Actions
     describe('fetchArticles', () => {
         it('should return the correct action for fetchArticles', () => {
             expect(articleActions.fetchArticles()).to.eql({
@@ -15,7 +16,7 @@ describe('actions', () => {
             const payload = 123456;
             expect(articleActions.fetchArticlesSuccess(payload)).to.eql({
                 type: types.FETCH_ARTICLES_SUCCESS,
-               payload: payload
+                payload: payload
             });
         });
         it('should return the correct action for fetchArticlesFailure', () => {
@@ -26,6 +27,7 @@ describe('actions', () => {
             });
         });
     });
+    //  Comments Actions
     describe('fetchComments', () => {
         it('should return the correct action for fetchComments', () => {
             expect(commentActions.fetchComments()).to.eql({
@@ -36,7 +38,7 @@ describe('actions', () => {
             const payload = 123456;
             expect(commentActions.fetchCommentsSuccess(payload)).to.eql({
                 type: types.FETCH_COMMENTS_SUCCESS,
-               payload: payload
+                payload: payload
             });
         });
         it('should return the correct action for fetchCommentsFailure', () => {
@@ -47,6 +49,7 @@ describe('actions', () => {
             });
         });
     });
+    //  Topics Actions
     describe('fetchTopics', () => {
         it('should return the correct action for fetchTopics', () => {
             expect(topicActions.fetchTopics()).to.eql({
@@ -57,7 +60,7 @@ describe('actions', () => {
             const payload = 123456;
             expect(topicActions.fetchTopicsSuccess(payload)).to.eql({
                 type: types.FETCH_TOPICS_SUCCESS,
-               payload: payload
+                payload: payload
             });
         });
         it('should return the correct action for fetchTopicsFailure', () => {
