@@ -8,15 +8,39 @@ class Articles extends Component {
     constructor(props) {
         super(props);
         this.handleClick = this.handleClick.bind(this);
+        this.conditionalRender = this.conditionalRender.bind(this);
     }
     componentDidMount() {
         this.props.getArticles();
-        console.log('*********',this);
     }
     handleClick(e) {
-        console.log('8888888888',this);
         const articleId = e.target.value;
         this.props.commentVisability(articleId);
+    }
+    conditionalRender(article) {
+        if (Object.keys(this.props.articles.articles).length > 1) {
+            return (
+                <div key={article._id}>
+                    <div className='row' >{article.title}</div>
+                </div>
+            );
+        }
+        else {
+                return (
+                    <div key={article._id}>
+                        <div className='row' >{article.title}</div>
+                        {
+                            this.props.articles.articles[article._id].commentVisable ?
+                        <div>
+                            <button onClick={this.handleClick} value={article._id}>Hide Comments</button>
+                            <Comments belongsTo={article._id} />
+                        </div>
+                        :
+                        <button onClick={this.handleClick} value={article._id}>Show Comments</button>
+                        }
+                    </div>
+                );
+        }
     }
     render() {
         return (
@@ -24,19 +48,7 @@ class Articles extends Component {
 
                 {Object.keys(this.props.articles.articles).length ?
                     map(this.props.articles.articles, (article) => {
-                        return (
-                            <div key={article._id}>
-                                <div className='row' >{article.title}</div>
-                                {this.props.articles.articles[article._id].commentVisable ?
-                                    <div>
-                                        <button onClick={this.handleClick} value={article._id}>Hide Comments</button>
-                                        <Comments belongsTo={article._id} />
-                                    </div>
-                                    :
-                                    <button onClick={this.handleClick} value={article._id}>Show Comments</button>
-                                }
-                            </div>
-                        );
+                        return this.conditionalRender(article)
                     }) : 'Loading'
 
                 }
