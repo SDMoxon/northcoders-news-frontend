@@ -15,7 +15,7 @@ class Header extends Component {
                     <NavLink to='/' className='col-sm-1'>Home</NavLink>
                     {Object.keys(this.props.topics.topics).length ?
                         map(this.props.topics.topics, (topic) => {
-                            return <NavLink to={`/articles/${topic.slug}`} key={topic._id} className='col-sm-1'>{topic.title}</NavLink>;
+                            return <NavLink to={`/topics/${topic.slug}/articles`} key={topic._id} className='col-sm-1'>{topic.title}</NavLink>;
 
 
                         }) : 'Loading'
