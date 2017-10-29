@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Comments from './Comments';
+import {NavLink} from 'react-router-dom'
 import { connect } from 'react-redux';
 import { fetchAllArticles, changeCommentVisability } from '../actions/articleActions';
 import { map } from 'underscore';
@@ -11,8 +12,6 @@ class Articles extends Component {
         this.conditionalRender = this.conditionalRender.bind(this);
     }
     componentWillReceiveProps(nextProps) {
-        console.log('next',nextProps.match.path);
-        console.log('current', this.props.match.path);
         const currentTopic = this.props.match.params.id;
         const nextTopic = nextProps.match.params.id;
         if (nextTopic !== currentTopic) {
@@ -30,7 +29,7 @@ class Articles extends Component {
         if (Object.keys(this.props.articles.articles).length > 1) {
             return (
                 <div key={article._id}>
-                    <div className='row' >{article.title}</div>
+                    <NavLink to='articles/:articleId' className='row' >{article.title}</NavLink>
                 </div>
             );
         }
