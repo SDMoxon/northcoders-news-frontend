@@ -23,8 +23,11 @@ export function articlesReducer(prevState = initialState, action) {
         newState.loading = false;
     }
     else if (action.type === types.CHANGE_COMMENT_VISABIlITY) {
-        newState[action.payload] = Object.assign({}, newState[action.payload]);
-        newState[action.payload].commentVisable = !newState[action.payload].commentVisable;
+        
+        newState.articles[action.payload] = Object.assign({}, prevState.articles[action.payload]);
+        
+        newState.articles[action.payload].commentVisable = !newState.articles[action.payload].commentVisable;
+        
     }
     else {
         return prevState;

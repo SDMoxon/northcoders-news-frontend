@@ -1,5 +1,5 @@
 import { expect } from 'chai';
-import { fetchArticlesRequest, fetchArticlesSuccess, fetchArticlesFailure, changeCommentVisability} from '../../src/actions/articleActions';
+import { fetchArticlesRequest, fetchArticlesSuccess, fetchArticlesFailure, changeCommentVisability } from '../../src/actions/articleActions';
 import { initialState, articlesReducer } from '../../src/reducers/articlesReducer';
 
 describe('ARTICLES REDUCER', () => {
@@ -34,25 +34,29 @@ describe('ARTICLES REDUCER', () => {
     describe.only('action: changeCommentVisability', () => {
         it('should update commentVisable to true from false', () => {
             const prevState = {
-                'A1234' :{
-                    commentsVisabile: false
+                articles: {
+                    'A1234': {
+                        commentVisable: false
+                    }
                 }
             };
             const action = changeCommentVisability('A1234');
             const newstate = articlesReducer(prevState, action);
             expect(initialState).to.not.eql(newstate);
-            expect(newstate.A1234.commentVisable).be.true;
+            expect(newstate.articles.A1234.commentVisable).be.true;
         });
         it('should update commentVisable to false from true', () => {
             const prevState = {
-                'A1234' :{
-                    commentVisable: true
+                articles: {
+                    'A1234': {
+                        commentVisable: true
+                    }
                 }
             };
             const action = changeCommentVisability('A1234');
             const newstate = articlesReducer(prevState, action);
             expect(initialState).to.not.eql(newstate);
-            expect(newstate.A1234.commentVisable).be.false;
+            expect(newstate.articles.A1234.commentVisable).be.false;
         });
     });
 });
