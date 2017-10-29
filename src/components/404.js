@@ -1,14 +1,13 @@
-import React, { Component, Link} from 'react';
+import React, { Component } from 'react';
+import { NavLink } from 'react-router-dom'
 
 class Error extends Component {
-    componentDidMount() {
-        this.props.getTopics();
-    }
     render() {
         return (
             <div className='container-fluid 404'>
+                <h2>404</h2>
                 <p>Don't Panic!</p>
-                <Link to={'/'}/>
+                <NavLink to={'/'}>Click Here To Go Home</NavLink>
             </div>
         );
     }
