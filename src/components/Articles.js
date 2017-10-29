@@ -10,8 +10,17 @@ class Articles extends Component {
         this.handleClick = this.handleClick.bind(this);
         this.conditionalRender = this.conditionalRender.bind(this);
     }
+    componentWillReceiveProps(nextProps) {
+        console.log('next',nextProps.match.path);
+        console.log('current', this.props.match.path);
+        const currentTopic = this.props.match.params.id;
+        const nextTopic = nextProps.match.params.id;
+        if (nextTopic !== currentTopic) {
+            this.props.getArticles(nextProps.match.params.id);
+        }
+    }
     componentDidMount() {
-        this.props.getArticles();
+        this.props.getArticles(this.props.match.params.id);
     }
     handleClick(e) {
         const articleId = e.target.value;
@@ -26,20 +35,20 @@ class Articles extends Component {
             );
         }
         else {
-                return (
-                    <div key={article._id}>
-                        <div className='row' >{article.title}</div>
-                        {
-                            this.props.articles.articles[article._id].commentVisable ?
-                        <div>
-                            <button onClick={this.handleClick} value={article._id}>Hide Comments</button>
-                            <Comments belongsTo={article._id} />
-                        </div>
-                        :
-                        <button onClick={this.handleClick} value={article._id}>Show Comments</button>
-                        }
-                    </div>
-                );
+            return (
+                <div key={article._id}>
+                    <div className='row' >{article.title}</div>
+                    {
+                        this.props.articles.articles[article._id].commentVisable ?
+                            <div>
+                                <button onClick={this.handleClick} value={article._id}>Hide Comments</button>
+                                <Comments belongsTo={article._id} />
+                            </div>
+                            :
+                            <button onClick={this.handleClick} value={article._id}>Show Comments</button>
+                    }
+                </div>
+            );
         }
     }
     render() {
@@ -58,8 +67,8 @@ class Articles extends Component {
 }
 function mapDispatchToProps(dispatch) {
     return {
-        getArticles: () => {
-            dispatch(fetchAllArticles());
+        getArticles: (id) => {
+            dispatch(fetchAllArticles(id));
         },
         commentVisability: (id) => {
             dispatch(changeCommentVisability(id));
