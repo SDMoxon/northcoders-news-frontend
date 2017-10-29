@@ -10,7 +10,7 @@ class Articles extends Component {
     }
     render() {
         return (
-            <div className="articles">
+            <div className="articles container">
 
                 {Object.keys(this.props.articles.articles).length ?
                     map(this.props.articles.articles, (article) => {

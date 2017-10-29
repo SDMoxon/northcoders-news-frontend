@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router';
 import { connect } from 'react-redux';
 import { fetchAllTopics } from '../actions/topicActions';
 import { map } from 'underscore';
@@ -12,13 +13,13 @@ class Header extends Component {
             <div className='container-fluid header'>
                 <div className='row'>
                     <div className='col-sm-1'>Home</div>
-                    {Object.keys(this.props.topics.topics).length?
-                    map(this.props.topics.topics, (topic) => {
-                        return <div className='col-sm-1'>{topic.title}</div>;
+                    {Object.keys(this.props.topics.topics).length ?
+                        map(this.props.topics.topics, (topic) => {
+                            return <div className='col-sm-1'>{topic.title}</div>;
 
 
-                    }): 'Loading'
-                }
+                        }) : 'Loading'
+                    }
                 </div>
             </div>
         );

@@ -9,7 +9,7 @@ class Comments extends Component {
     }
     render() {
         return (
-            <div className="comments">
+            <div className="comments container">
                 {Object.keys(this.props.comments.comments).length ?
                     map(this.props.comments.comments, (comment) => {
                         return (
