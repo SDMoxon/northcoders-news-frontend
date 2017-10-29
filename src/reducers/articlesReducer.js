@@ -1,5 +1,5 @@
 import * as types from '../types';
-import {normaliseData} from '../utils';
+import {processArticleData} from '../utils';
 
 
 export const initialState = {
@@ -15,7 +15,7 @@ export function articlesReducer(prevState = initialState, action) {
         newState.loading = true;
     }
     else if (action.type === types.FETCH_ARTICLES_SUCCESS) {
-        newState.articles = normaliseData(action.payload);
+        newState.articles = processArticleData(action.payload);
         newState.loading = false;
     }
     else if (action.type === types.FETCH_ARTICLES_FAILURE) {
