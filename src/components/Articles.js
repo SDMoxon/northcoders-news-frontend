@@ -12,13 +12,15 @@ class Articles extends Component {
         this.conditionalRender = this.conditionalRender.bind(this);
     }
     componentWillReceiveProps(nextProps) {
-        if (nextProps.match.params.articleId !== this.props.match.params.articleId) {
+        if (nextProps.match.params.articleId !== this.props.match.params.articleId && nextProps.match.params.articleId !== undefined) {
             this.props.getArticle(nextProps.match.params.articleId);
         }
-        const currentTopic = this.props.match.params.id;
-        const nextTopic = nextProps.match.params.id;
-        if (nextTopic !== currentTopic) {
-            this.props.getArticles(nextProps.match.params.id);
+        else {
+            const currentTopic = this.props.match.params.id;
+            const nextTopic = nextProps.match.params.id;
+            if (nextTopic !== currentTopic) {
+                this.props.getArticles(nextProps.match.params.id);
+            }
         }
     }
     componentDidMount() {
