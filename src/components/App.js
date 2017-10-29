@@ -4,6 +4,7 @@ import 'bootstrap/dist/css/bootstrap.css';
 import '../styles/App.css';
 import Articles from './Articles';
 import Header from './Header';
+import Error from './404';
 
 class App extends Component {
   render() {
@@ -14,7 +15,7 @@ class App extends Component {
           <Switch>
             <Route exact path="/" component={Articles} />
             <Route path="/articles/:id" component={Articles} />
-            <Route component={'404'} />
+            <Route component={Error} />
           </Switch>
         </Router>
       </div>

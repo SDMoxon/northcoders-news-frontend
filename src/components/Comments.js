@@ -13,7 +13,7 @@ class Comments extends Component {
                 {Object.keys(this.props.comments.comments).length ?
                     map(this.props.comments.comments, (comment) => {
                         return (
-                        <div className='row'>{comment.body}</div>
+                        <div className='row' key={comment._id}>{comment.body}</div>
                         );
                     }) : 'Loading'
 

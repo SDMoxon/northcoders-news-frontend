@@ -15,8 +15,8 @@ class Articles extends Component {
                 {Object.keys(this.props.articles.articles).length ?
                     map(this.props.articles.articles, (article) => {
                         return (
-                        <div>
-                        <div className='row'>{article.title}</div>
+                        <div key = {article._id}>
+                        <div className='row' >{article.title}</div>
                         <Comments belongsTo={article._id}/>
                         </div>
                         );

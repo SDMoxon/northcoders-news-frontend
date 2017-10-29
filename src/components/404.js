@@ -1,6 +1,4 @@
-import React, { Component } from 'react';
-import { Link } from 'react-router';
-import { map } from 'underscore';
+import React, { Component, Link} from 'react';
 
 class Error extends Component {
     componentDidMount() {

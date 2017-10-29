@@ -15,7 +15,7 @@ class Header extends Component {
                     <div className='col-sm-1'>Home</div>
                     {Object.keys(this.props.topics.topics).length ?
                         map(this.props.topics.topics, (topic) => {
-                            return <div className='col-sm-1'>{topic.title}</div>;
+                            return <div key={topic._id} className='col-sm-1'>{topic.title}</div>;
 
 
                         }) : 'Loading'
