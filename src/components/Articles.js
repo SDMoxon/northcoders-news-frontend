@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import Comments from './Comments';
-import {NavLink} from 'react-router-dom'
+import { NavLink } from 'react-router-dom'
 import { connect } from 'react-redux';
-import { fetchAllArticles, changeCommentVisability } from '../actions/articleActions';
+import { fetchAllArticles, changeCommentVisability, fetchSingleArticle } from '../actions/articleActions';
 import { map } from 'underscore';
 
 class Articles extends Component {
@@ -12,6 +12,9 @@ class Articles extends Component {
         this.conditionalRender = this.conditionalRender.bind(this);
     }
     componentWillReceiveProps(nextProps) {
+        if (nextProps.match.params.articleId !== this.props.match.params.articleId) {
+            this.props.getArticle(nextProps.match.params.articleId);
+        }
         const currentTopic = this.props.match.params.id;
         const nextTopic = nextProps.match.params.id;
         if (nextTopic !== currentTopic) {
@@ -19,7 +22,12 @@ class Articles extends Component {
         }
     }
     componentDidMount() {
-        this.props.getArticles(this.props.match.params.id);
+        if (this.props.match.path === '/articles/:articleId') {
+            this.props.getArticle(this.props.match.params.articleId);
+        }
+        else {
+            this.props.getArticles(this.props.match.params.id);
+        }
     }
     handleClick(e) {
         const articleId = e.target.value;
@@ -29,7 +37,7 @@ class Articles extends Component {
         if (Object.keys(this.props.articles.articles).length > 1) {
             return (
                 <div key={article._id}>
-                    <NavLink to='articles/:articleId' className='row' >{article.title}</NavLink>
+                    <NavLink to={`/articles/${article._id}`} className='row' >{article.title}</NavLink>
                 </div>
             );
         }
@@ -71,6 +79,9 @@ function mapDispatchToProps(dispatch) {
         },
         commentVisability: (id) => {
             dispatch(changeCommentVisability(id));
+        },
+        getArticle: (articleId) => {
+            dispatch(fetchSingleArticle(articleId));
         }
     };
 }
