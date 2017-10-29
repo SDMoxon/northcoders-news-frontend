@@ -27,6 +27,15 @@ describe('actions', () => {
             });
         });
     });
+    describe('changeCommentVisability', () => {
+        it('should return the correct id', () =>{
+            const articleId = 'A12345678910';
+            expect(articleActions.changeCommentVisability(articleId)).to.eql({
+                type: types.CHANGE_COMMENT_VISABIlITY,
+                payload: articleId
+            });
+        });
+    });
     //  Comments Actions
     describe('fetchComments', () => {
         it('should return the correct action for fetchComments', () => {

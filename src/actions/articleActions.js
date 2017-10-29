@@ -40,3 +40,10 @@ export function fetchArticlesSuccess (payload) {
 	};
 }
 
+export function changeCommentVisability (payload) {
+	return {
+		type: types.CHANGE_COMMENT_VISABIlITY,
+		payload: payload
+	};
+}
+
