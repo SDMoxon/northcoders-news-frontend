@@ -24,15 +24,10 @@ export function fetchAllArticles(topic) {
 export function fetchSingleArticle(id) {
     return function (dispatch) {
         const getURL = `${ROOT}/articles`;
-        console.log('this far');
         dispatch(fetchArticlesRequest());
         axios
             .get(getURL)
             .then(res => {
-            console.log(res);
-               console.log(res.data.articles.filter(value => {
-                    return value._id === id;
-                }));
                 dispatch(fetchArticlesSuccess(res.data.articles.filter(value => {
                     return value._id === id;
                 })));
