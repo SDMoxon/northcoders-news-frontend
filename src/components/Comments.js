@@ -1,17 +1,42 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { fetchAllComments } from '../actions/commentActions';
+import { map } from 'underscore';
 
-const comments = ['a', 'b', 'c', 'd']
 class Comments extends Component {
+    componentDidMount() {
+        this.props.getComments(this.props.belongsTo);
+    }
     render() {
         return (
             <div className="comments">
-                <p>comments</p>
-                {comments.map((comment) => 
-                    <div className='row'>{comment}</div>
-                )}
+                {Object.keys(this.props.comments.comments).length ?
+                    map(this.props.comments.comments, (comment) => {
+                        return (
+                        <div className='row'>{comment.body}</div>
+                        );
+                    }) : 'Loading'
+
+                }
             </div>
         );
     }
 }
 
-export default Comments;
+function mapDispatchToProps(dispatch) {
+    return {
+        getComments: (id) => {
+            dispatch(fetchAllComments(id));
+        }
+    };
+}
+
+function mapStateToProps(state) {
+    return {
+        comments: state.comments,
+        loading: state.comments.loading,
+        error: state.comments.error
+    };
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Comments);

@@ -8,6 +8,7 @@ export function fetchAllComments(id) {
 		axios
 			.get(`${ROOT}/articles/${id}/comments`)
 			.then((res) => {
+				console.log(res);
 				dispatch(fetchCommentsSuccess(res.data.comments));
 			})
 			.catch((err) => {

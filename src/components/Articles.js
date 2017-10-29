@@ -1,27 +1,46 @@
 import React, { Component } from 'react';
 import Comments from './Comments';
+import { connect } from 'react-redux';
+import { fetchAllArticles } from '../actions/articleActions';
+import { map } from 'underscore';
 
-const articles = ['1', '2', '3'];
 class Articles extends Component {
     componentDidMount() {
-        
+        this.props.getArticles();
     }
     render() {
         return (
             <div className="articles">
-                Articles
-                {articles.map((article) => {
 
-                    return <div>
-                        <p>Article</p>
-                        <div className='row'>{article}</div>
-                        <Comments />
-                    </div>;
-                })
+                {Object.keys(this.props.articles.articles).length ?
+                    map(this.props.articles.articles, (article) => {
+                        return (
+                        <div>
+                        <div className='row'>{article.title}</div>
+                        <Comments belongsTo={article._id}/>
+                        </div>
+                        );
+                    }) : 'Loading'
+
                 }
             </div>
         );
     }
 }
+function mapDispatchToProps(dispatch) {
+    return {
+        getArticles: () => {
+            dispatch(fetchAllArticles());
+        }
+    };
+}
 
-export default Articles;
+function mapStateToProps(state) {
+    return {
+        articles: state.articles,
+        loading: state.articles.loading,
+        error: state.articles.error
+    };
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Articles);

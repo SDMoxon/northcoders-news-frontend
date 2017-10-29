@@ -8,7 +8,6 @@ export function fetchAllTopics () {
         axios
             .get(`${ROOT}/topics`)
             .then(res => {
-                console.log(res);
                 dispatch(fetchTopicsSuccess(res.data.topics));
             })
             .catch(err => {
