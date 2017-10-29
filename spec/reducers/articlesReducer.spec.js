@@ -31,7 +31,7 @@ describe('ARTICLES REDUCER', () => {
             expect(initialState).to.not.eql(newstate);
         });
     });
-    describe.only('action: changeCommentVisability', () => {
+    describe('action: changeCommentVisability', () => {
         it('should update commentVisable to true from false', () => {
             const prevState = {
                 articles: {

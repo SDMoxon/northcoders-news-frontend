@@ -4,7 +4,7 @@ export function normaliseData(dataArray) {
         return acc;
     }, {});
 }
-export function processArticleData(dataArray) {
+export function processListData(dataArray) {
     return dataArray.reduce((acc, data) => {
         acc[data._id] = data;
         acc[data._id].commentsVisable = false;

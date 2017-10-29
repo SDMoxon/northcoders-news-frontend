@@ -52,11 +52,11 @@ class Articles extends Component {
                     {
                         this.props.articles.articles[article._id].commentVisable ?
                             <div>
-                                <button onClick={this.handleClick} value={article._id}>Hide Comments</button>
+                                <button class="btn" onClick={this.handleClick} value={article._id}>Hide Comments</button>
                                 <Comments belongsTo={article._id} />
                             </div>
                             :
-                            <button onClick={this.handleClick} value={article._id}>Show Comments</button>
+                            <button class="btn" onClick={this.handleClick} value={article._id}>Show Comments</button>
                     }
                 </div>
             );

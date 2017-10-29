@@ -16,9 +16,9 @@ describe('COMMENTS REDUCER', () => {
                 { _id: 122, title: 'football' }
                   ];
               const exp = {
-                '30': { _id: 30, title: 'coding' },
-                '12': { _id: 12, title: 'cooking' },
-                '122': { _id: 122, title: 'football' }
+                '30': { _id: 30,  title: 'coding' },
+                '12': { _id: 12,  title: 'cooking' },
+                '122': { _id: 122,  title: 'football' }
               };
             const action = fetchCommentsSuccess(data);
             const newstate = commentsReducer(initialState, action);

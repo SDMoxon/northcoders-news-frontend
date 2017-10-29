@@ -16,7 +16,7 @@ describe('UTILS', () => {
       expect(utils.normaliseData(data)).to.eql(exp);
     });
   });
-  describe('processArticleData', () => {
+  describe('processListData', () => {
     const data = [
       { _id: 50, title: 'cooking' },
       { _id: 23, title: 'coding' },
@@ -28,7 +28,7 @@ describe('UTILS', () => {
       '56': { _id: 56, commentsVisable: false, title: 'football' }
     };
     it('returns processed data', () => {
-      expect(utils.processArticleData(data)).to.eql(exp);
+      expect(utils.processListData(data)).to.eql(exp);
     });
   });
 });
