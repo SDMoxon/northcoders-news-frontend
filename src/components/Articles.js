@@ -15,14 +15,12 @@ class Articles extends Component {
         const currentTopic = this.props.match.params.id;
         const nextTopic = nextProps.match.params.id;
 
-        if (nextProps.match.params.articleId !== this.props.match.params.articleId && nextProps.match.params.articleId !== undefined) {
+        if (nextProps.match.params.articleId !== this.props.match.params.articleId && 
+            nextProps.match.params.articleId !== undefined) {
             this.props.getArticle(nextProps.match.params.articleId);
         }
         else if (nextTopic !== currentTopic) {
-
-            console.log('000000000', nextTopic !== currentTopic);
             this.props.getArticles(nextProps.match.params.id);
-
         }
     }
     componentDidMount() {
