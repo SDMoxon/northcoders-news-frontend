@@ -21,6 +21,7 @@
   },
   "devDependencies": {
     "babel-preset-react-app": "^3.0.3",
-    "bootstrap": "^3.3.7"
+    "bootstrap": "^3.3.7",
+    "underscore": "^1.8.3"
   }
 }

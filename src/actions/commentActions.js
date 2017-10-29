@@ -1,6 +1,6 @@
 import * as types from '../types';
 import axios from 'axios';
-const ROOT = 'http://localhost:3080/';
+const ROOT = 'http://localhost:3080/api';
 
 export function fetchAllComments(id) {
 	return function (dispatch) {

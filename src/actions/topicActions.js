@@ -1,6 +1,6 @@
 import * as types from '../types';
 import axios from 'axios';
-const ROOT = 'http://localhost:3080/';
+const ROOT = 'http://localhost:3080/api';
 
 export function fetchAllTopics () {
     return function (dispatch) {
@@ -8,9 +8,11 @@ export function fetchAllTopics () {
         axios
             .get(`${ROOT}/topics`)
             .then(res => {
+                console.log(res);
                 dispatch(fetchTopicsSuccess(res.data.topics));
             })
             .catch(err => {
+                console.log(err);
                 dispatch(fetchTopicsFailure(err));
             });
     };
