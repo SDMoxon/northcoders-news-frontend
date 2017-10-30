@@ -3,6 +3,7 @@ import {normaliseData} from '../utils';
 export const initialState = {
     comments: {},
     loading: false,
+    sending: false,
     error: null,
     newCommentVisible: false,
     newCommentInput:''
@@ -30,6 +31,17 @@ export function commentsReducer(prevState = initialState, action) {
     }
     else if (action.type === types.RESET_COMMENT_STATE) {
         newState.newCommentInput = '';
+    }
+    else if (action.type === types.POST_COMMENTS_REQUEST) {
+        newState.sending = true;
+    }
+    else if (action.type === types.POST_COMMENTS_SUCCESS) {
+        newState.comments[action.payload._id] = action.payload;
+        newState.sending = false;
+    }
+    else if (action.type === types.POST_COMMENTS_FAILURE) {
+        newState.error = action.payload;
+        newState.sending = false;
     }
     else {
         return prevState;
