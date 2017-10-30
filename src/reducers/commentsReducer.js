@@ -4,7 +4,8 @@ export const initialState = {
     comments: {},
     loading: false,
     error: null,
-    newCommentVisible: false
+    newCommentVisible: false,
+    newCommentInput:''
 };
 
 export function commentsReducer(prevState = initialState, action) {
@@ -23,6 +24,12 @@ export function commentsReducer(prevState = initialState, action) {
     }
     else if (action.type === types.CHANGE_NEW_COMMENT_VISIBILITY) {
         newState.newCommentVisible = !newState.newCommentVisible;
+    }
+    else if (action.type === types.HANDLE_NEW_COMMENT_INPUT) {
+        newState.newCommentInput += action.payload;
+    }
+    else if (action.type === types.RESET_COMMENT_STATE) {
+        newState.newCommentInput = '';
     }
     else {
         return prevState;
