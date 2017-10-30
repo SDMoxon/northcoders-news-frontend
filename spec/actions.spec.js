@@ -28,10 +28,10 @@ describe('actions', () => {
         });
     });
     describe('changeCommentVisability', () => {
-        it('should return the correct id', () =>{
+        it('should return the correct id', () => {
             const articleId = 'A12345678910';
-            expect(articleActions.changeCommentVisability(articleId)).to.eql({
-                type: types.CHANGE_COMMENT_VISABIlITY,
+            expect(articleActions.changeCommentVisibility(articleId)).to.eql({
+                type: types.CHANGE_COMMENT_VISIBILITY,
                 payload: articleId
             });
         });

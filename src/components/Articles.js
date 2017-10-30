@@ -38,15 +38,17 @@ class Articles extends Component {
     conditionalRender(article) {
         if (Object.keys(this.props.articles.articles).length > 1) {
             return (
-                <div key={article._id}>
-                    <NavLink to={`/articles/${article._id}`} className='row' >{article.title}</NavLink>
+                <div className='row' key={article._id}>
+                    <NavLink to={`/articles/${article._id}`} >{article.title}</NavLink>
+                    <p>{article.body}</p>
                 </div>
             );
         }
         else {
             return (
-                <div key={article._id}>
-                    <div className='row' >{article.title}</div>
+                <div className='row' key={article._id}>
+                    <p>{article.title}</p>
+                    <p>{article.body}</p>
                     {
                         this.props.articles.articles[article._id].commentVisable ?
                             <div>

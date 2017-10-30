@@ -1,5 +1,5 @@
 import { expect } from 'chai';
-import { fetchArticlesRequest, fetchArticlesSuccess, fetchArticlesFailure, changeCommentVisability } from '../../src/actions/articleActions';
+import { fetchArticlesRequest, fetchArticlesSuccess, fetchArticlesFailure, changeCommentVisibility } from '../../src/actions/articleActions';
 import { initialState, articlesReducer } from '../../src/reducers/articlesReducer';
 
 describe('ARTICLES REDUCER', () => {
@@ -40,7 +40,7 @@ describe('ARTICLES REDUCER', () => {
                     }
                 }
             };
-            const action = changeCommentVisability('A1234');
+            const action = changeCommentVisibility('A1234');
             const newstate = articlesReducer(prevState, action);
             expect(initialState).to.not.eql(newstate);
             expect(newstate.articles.A1234.commentVisable).be.true;
@@ -53,7 +53,7 @@ describe('ARTICLES REDUCER', () => {
                     }
                 }
             };
-            const action = changeCommentVisability('A1234');
+            const action = changeCommentVisibility('A1234');
             const newstate = articlesReducer(prevState, action);
             expect(initialState).to.not.eql(newstate);
             expect(newstate.articles.A1234.commentVisable).be.false;
