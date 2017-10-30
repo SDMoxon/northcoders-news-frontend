@@ -23,18 +23,18 @@ class Comments extends Component {
     }
     conditionalRender() {
         return this.props.comments.newCommentVisible ?
-            <div class='panel'>
-                <div class="panel-body">
+            <div className='panel'>
+                <div className="panel-body">
                     <textarea placeholder="Write your comment here!" class="pb-cmnt-textarea"></textarea>
-                    <form class="form-inline">
-                        <button class="btn  pull-left" type="button">Submit</button>
-                        <button onClick={this.handleClick} class="btn  pull-left" type="button">Cancel</button>
+                    <form className="form-inline">
+                        <button className="btn  pull-left" type="button">Submit</button>
+                        <button onClick={this.handleClick} className="btn  pull-left" type="button">Cancel</button>
                     </form>
                 </div>
             </div>
 
             :
-            <button class="btn" onClick={this.handleClick}>Add New Comment</button>
+            <button className="btn" onClick={this.handleClick}>Add New Comment</button>
     }
     render() {
         return (
@@ -43,7 +43,7 @@ class Comments extends Component {
                     map(this.props.comments.comments, (comment) => {
                         return (
                             <div className='row panel panel-info' key={comment._id}>
-                                <div class='panel-body'>
+                                <div className='panel-body'>
                                     <p>{comment.created_by}</p>
                                     <p>{comment.body}</p>
                                     <p>Votes {comment.votes}</p>

@@ -50,8 +50,8 @@ class Articles extends Component {
         else {
             return (
                 <div className='row ' key={article._id}>
-                    <div class='panel panel-info'>
-                        <div class='panel-body'>
+                    <div className='panel panel-info'>
+                        <div className='panel-body'>
                         <p>{article.title}</p>
                         <p>{article.body}</p>
                         <p>Votes {article.votes}</p>
@@ -60,11 +60,11 @@ class Articles extends Component {
                     {
                         this.props.articles.articles[article._id].commentVisable ?
                             <div>
-                                <button class="btn" onClick={this.handleClick} value={article._id}>Hide Comments</button>
+                                <button className="btn" onClick={this.handleClick} value={article._id}>Hide Comments</button>
                                 <Comments belongsTo={article._id} />
                             </div>
                             :
-                            <button class="btn" onClick={this.handleClick} value={article._id}>Show Comments</button>
+                            <button className="btn" onClick={this.handleClick} value={article._id}>Show Comments</button>
                     }
                 </div>
             );
