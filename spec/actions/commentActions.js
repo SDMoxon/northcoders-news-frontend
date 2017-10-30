@@ -23,34 +23,50 @@ describe('Comments Actions', () => {
                 payload: error
             });
         });
-        describe('changeNewCommentVisability', () => {
-            it('should return the correct action', () => {
-                expect(commentActions.changeNewCommentVisibility()).to.eql({
-                    type: types.CHANGE_NEW_COMMENT_VISIBILITY
-                });
+    });
+    describe('changeNewCommentVisability', () => {
+        it('should return the correct action', () => {
+            expect(commentActions.changeNewCommentVisibility()).to.eql({
+                type: types.CHANGE_NEW_COMMENT_VISIBILITY
             });
         });
-        describe('handleNewCommentSubmit', () => {
-            it('should return the correct action', () => {
-                expect(commentActions.handleNewCommentSubmit()).to.eql({
-                    type: types.HANDLE_NEW_COMMENT_SUBMIT
-                });
+    });
+    describe('action: Post Comment', () => {
+        it('should return the correct action for request', () => {
+            expect(commentActions.postCommentRequest()).to.eql({
+                type: types.POST_COMMENTS_REQUEST
             });
         });
-        describe('handelNewCommentInput', () => {
-            it('should return the correct action', () => {
-                const payload = 'i am some kind of text';
-                expect(commentActions.handelNewCommentInput(payload)).to.eql({
-                    type: types.HANDLE_NEW_COMMENT_INPUT,
-                    payload:payload
-                });
+
+        it('should return the correct action for success', () => {
+            const payload = {}
+            expect(commentActions.postCommentSuccess(payload)).to.eql({
+                type: types.POST_COMMENTS_SUCCESS,
+                payload:payload
             });
         });
-        describe('resetCommentState', () => {
-            it('should return the correct action', () => {
-                expect(commentActions.resetCommentState()).to.eql({
-                    type: types.RESET_COMMENT_STATE
-                });
+
+        it('should return the correct action for failure', () => {
+            const error = 'error'
+            expect(commentActions.postCommentFailure(error)).to.eql({
+                type: types.POST_COMMENTS_FAILURE,
+                payload:error
+            });
+        });
+    });
+    describe('handelNewCommentInput', () => {
+        it('should return the correct action', () => {
+            const payload = 'i am some kind of text';
+            expect(commentActions.handelNewCommentInput(payload)).to.eql({
+                type: types.HANDLE_NEW_COMMENT_INPUT,
+                payload: payload
+            });
+        });
+    });
+    describe('resetCommentState', () => {
+        it('should return the correct action', () => {
+            expect(commentActions.resetCommentState()).to.eql({
+                type: types.RESET_COMMENT_STATE
             });
         });
     });

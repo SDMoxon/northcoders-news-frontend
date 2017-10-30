@@ -42,12 +42,6 @@ export function changeNewCommentVisibility() {
         type: types.CHANGE_NEW_COMMENT_VISIBILITY,
 	};
 }
-export function handleNewCommentSubmit() {
-    return {
-        type: types.HANDLE_NEW_COMMENT_SUBMIT,
- 
-    };
-}
 export function handelNewCommentInput(payload) {
     return {
         type: types.HANDLE_NEW_COMMENT_INPUT,
@@ -57,5 +51,34 @@ export function handelNewCommentInput(payload) {
 export function resetCommentState() {
     return {
         type: types.RESET_COMMENT_STATE,
+    };
+}
+
+
+
+
+
+
+export function handleNewCommentSubmit() {
+
+}
+
+export function postCommentRequest() {
+    return {
+        type: types.POST_COMMENTS_REQUEST,
+ 
+    };
+}
+export function postCommentSuccess(payload) {
+    return {
+        type: types.POST_COMMENTS_SUCCESS,
+		payload:payload
+    };
+}
+export function postCommentFailure(error) {
+    return {
+		type: types.POST_COMMENTS_FAILURE,
+		payload: error
+ 
     };
 }
