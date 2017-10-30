@@ -14,7 +14,6 @@ class Comments extends Component {
         if (nextCommentVisible !== currentCommentVisible) {
             this.props.getComments(this.props.belongsTo);
         }
-        if ()
     }
     componentDidMount() {
         this.props.getComments(this.props.belongsTo);
