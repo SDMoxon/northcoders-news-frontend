@@ -7,7 +7,7 @@ describe('TOPICS REDUCER', () => {
         it('should update the state correctly for fetchTopics', () => {
             const action = fetchTopicsRequest();
             const newstate = topicsReducer(initialState, action);
-            expect(initialState).to.not.eql(newstate);
+            expect(initialState).to.not.equal(newstate);
         });
         it('should update the state correctly for fetchTopicsSuccess', () => {
             const data = [
@@ -22,13 +22,13 @@ describe('TOPICS REDUCER', () => {
               };
             const action = fetchTopicsSuccess(data);
             const newstate = topicsReducer(initialState, action);
-            expect(initialState).to.not.eql(newstate);
+            expect(initialState).to.not.equal(newstate);
             expect(newstate.topics).to.eql(exp);
         });
         it('should update the state correctly for fetchTopicsFailure', () => {
             const action = fetchTopicsFailure('error');
             const newstate = topicsReducer(initialState, action);
-            expect(initialState).to.not.eql(newstate);
+            expect(initialState).to.not.equal(newstate);
         });
     });
 });

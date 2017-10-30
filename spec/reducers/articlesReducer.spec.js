@@ -7,7 +7,7 @@ describe('ARTICLES REDUCER', () => {
         it('should update the state correctly for fetchArticles', () => {
             const action = fetchArticlesRequest();
             const newstate = articlesReducer(initialState, action);
-            expect(initialState).to.not.eql(newstate);
+            expect(initialState).to.not.equal(newstate);
         });
         it('should update the state correctly for fetchArticlesSuccess', () => {
             const data = [
@@ -22,13 +22,13 @@ describe('ARTICLES REDUCER', () => {
             };
             const action = fetchArticlesSuccess(data);
             const newstate = articlesReducer(initialState, action);
-            expect(initialState).to.not.eql(newstate);
+            expect(initialState).to.not.equal(newstate);
             expect(newstate.articles).to.eql(exp);
         });
         it('should update the state correctly for fetchArticlesFailure', () => {
             const action = fetchArticlesFailure('error');
             const newstate = articlesReducer(initialState, action);
-            expect(initialState).to.not.eql(newstate);
+            expect(initialState).to.not.equal(newstate);
         });
     });
     describe('action: changeCommentVisability', () => {
@@ -55,7 +55,7 @@ describe('ARTICLES REDUCER', () => {
             };
             const action = changeCommentVisibility('A1234');
             const newstate = articlesReducer(prevState, action);
-            expect(initialState).to.not.eql(newstate);
+            expect(initialState).to.not.equal(newstate);
             expect(newstate.articles.A1234.commentVisable).be.false;
         });
     });

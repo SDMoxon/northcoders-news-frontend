@@ -2,7 +2,7 @@ import { expect } from 'chai';
 import * as commentActions from '../../src/actions/commentActions';
 import * as types from '../../src/types';
 
-describe.only ('Comments Actions', () => {
+describe('Comments Actions', () => {
     describe('fetchComments', () => {
         it('should return the correct action for fetchComments', () => {
             expect(commentActions.fetchCommentsRequest()).to.eql({

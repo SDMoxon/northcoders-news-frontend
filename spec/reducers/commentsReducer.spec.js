@@ -2,7 +2,7 @@ import { expect } from 'chai';
 import { fetchCommentsRequest, fetchCommentsSuccess, fetchCommentsFailure, changeNewCommentVisibility, handelNewCommentInput, resetCommentState } from '../../src/actions/commentActions';
 import { initialState, commentsReducer } from '../../src/reducers/commentsReducer';
 
-describe.only('COMMENTS REDUCER', () => {
+describe('COMMENTS REDUCER', () => {
     describe('action: fetchComments', () => {
         it('should update the state correctly for fetchComments', () => {
             const action = fetchCommentsRequest();
