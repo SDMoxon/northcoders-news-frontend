@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { fetchAllComments, changeNewCommentVisability } from '../actions/commentActions';
+import { fetchAllComments, changeNewCommentVisibility } from '../actions/commentActions';
 import { map } from 'underscore';
 
 class Comments extends Component {
@@ -9,9 +9,9 @@ class Comments extends Component {
         this.handleClick = this.handleClick.bind(this);
     }
     componentWillReceiveProps(nextProps) {
-        const currentCommentVisable = this.props.comments.newCommentVisable;
-        const nextCommentVisable = nextProps.comments.newCommentVisable;
-        if (nextCommentVisable !== currentCommentVisable) {
+        const currentCommentVisible = this.props.comments.newCommentVisible;
+        const nextCommentVisible = nextProps.comments.newCommentVisible;
+        if (nextCommentVisible !== currentCommentVisible) {
             this.props.getComments(this.props.belongsTo);
         }
     }
@@ -19,10 +19,10 @@ class Comments extends Component {
         this.props.getComments(this.props.belongsTo);
     }
     handleClick() {
-        this.props.newCommentVisability();
+        this.props.newCommentVisibility();
     }
     conditionalRender() {
-        return this.props.comments.newCommentVisable ?
+        return this.props.comments.newCommentVisible ?
             <div class='panel panel-info'>
                 <div class="panel-body">
                     <textarea placeholder="Write your comment here!" class="pb-cmnt-textarea"></textarea>
@@ -58,8 +58,8 @@ function mapDispatchToProps(dispatch) {
         getComments: (id) => {
             dispatch(fetchAllComments(id));
         },
-        newCommentVisability: () => {
-            dispatch(changeNewCommentVisability());
+        newCommentVisibility: () => {
+            dispatch(changeNewCommentVisibility());
         }
     };
 }

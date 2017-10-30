@@ -58,9 +58,9 @@ export function fetchArticlesSuccess(payload) {
     };
 }
 
-export function changeCommentVisability(payload) {
+export function changeCommentVisibility(payload) {
     return {
-        type: types.CHANGE_COMMENT_VISABIlITY,
+        type: types.CHANGE_COMMENT_VISIBILITY,
         payload: payload
     };
 }

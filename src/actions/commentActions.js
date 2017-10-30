@@ -37,9 +37,9 @@ export function fetchCommentsSuccess(payload) {
 		payload: payload
 	};
 }
-export function changeNewCommentVisability() {
+export function changeNewCommentVisibility() {
     return {
-        type: types.CHANGE_NEW_COMMENT_VISABIlITY,
+        type: types.CHANGE_NEW_COMMENT_VISIBILITY,
 	};
 }
 

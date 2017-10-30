@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Comments from './Comments';
 import { NavLink } from 'react-router-dom'
 import { connect } from 'react-redux';
-import { fetchAllArticles, changeCommentVisability, fetchSingleArticle } from '../actions/articleActions';
+import { fetchAllArticles, changeCommentVisibility, fetchSingleArticle } from '../actions/articleActions';
 import { map } from 'underscore';
 
 class Articles extends Component {
@@ -33,7 +33,7 @@ class Articles extends Component {
     }
     handleClick(e) {
         const articleId = e.target.value;
-        this.props.commentVisability(articleId);
+        this.props.commentVisibility(articleId);
     }
     conditionalRender(article) {
         if (Object.keys(this.props.articles.articles).length > 1) {
@@ -79,8 +79,8 @@ function mapDispatchToProps(dispatch) {
         getArticles: (id) => {
             dispatch(fetchAllArticles(id));
         },
-        commentVisability: (id) => {
-            dispatch(changeCommentVisability(id));
+        commentVisibility: (id) => {
+            dispatch(changeCommentVisibility(id));
         },
         getArticle: (articleId) => {
             dispatch(fetchSingleArticle(articleId));
