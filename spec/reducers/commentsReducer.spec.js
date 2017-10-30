@@ -1,13 +1,13 @@
 import { expect } from 'chai';
-import { fetchCommentsRequest, fetchCommentsSuccess, fetchCommentsFailure } from '../../src/actions/commentActions';
+import { fetchCommentsRequest, fetchCommentsSuccess, fetchCommentsFailure, changeNewCommentVisibility } from '../../src/actions/commentActions';
 import { initialState, commentsReducer } from '../../src/reducers/commentsReducer';
 
 describe('COMMENTS REDUCER', () => {
     describe('action: fetchComments', () => {
         it('should update the state correctly for fetchComments', () => {
             const action = fetchCommentsRequest();
-            const newstate = commentsReducer(initialState, action);
-            expect(initialState).to.not.eql(newstate);
+            const newState = commentsReducer(initialState, action);
+            expect(initialState).to.not.eql(newState);
         });
         it('should update the state correctly for fetchCommentsSuccess', () => {
             const data = [
@@ -21,14 +21,22 @@ describe('COMMENTS REDUCER', () => {
                 '122': { _id: 122, title: 'football' }
             };
             const action = fetchCommentsSuccess(data);
-            const newstate = commentsReducer(initialState, action);
-            expect(initialState).to.not.eql(newstate);
-            expect(newstate.comments).to.eql(exp);
+            const newState = commentsReducer(initialState, action);
+            expect(initialState).to.not.eql(newState);
+            expect(newState.comments).to.eql(exp);
         });
         it('should update the state correctly for fetchCommentsFailure', () => {
             const action = fetchCommentsFailure('error');
-            const newstate = commentsReducer(initialState, action);
-            expect(initialState).to.not.eql(newstate);
+            const newState = commentsReducer(initialState, action);
+            expect(initialState).to.not.eql(newState);
+        });
+    });
+    describe('changeNewCommentVisibility', () => {
+        it('should update commentVisable to true from false', () => {
+            const action = changeNewCommentVisibility();
+            const newState = commentsReducer(initialState, action);
+            expect(initialState).to.not.eql(newState);
+            expect(newState.newCommentVisible).be.true;
         });
     });
 });

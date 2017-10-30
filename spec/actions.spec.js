@@ -57,6 +57,13 @@ describe('actions', () => {
                 payload: error
             });
         });
+        describe('changeNewCommentVisability', () => {
+            it('should return the correct action', () => {
+                expect(commentActions.changeNewCommentVisibility()).to.eql({
+                    type: types.CHANGE_NEW_COMMENT_VISIBILITY
+                });
+            });
+        });
     });
     //  Topics Actions
     describe('fetchTopics', () => {
