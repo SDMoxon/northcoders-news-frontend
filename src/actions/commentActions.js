@@ -54,12 +54,19 @@ export function resetCommentState() {
     };
 }
 
+export function postComment(id, data) {
+	return function (dispatch) {
+		dispatch(postCommentRequest());
+		axios
+			.post(`${ROOT}/articles/${id}/comments`, data)
+			.then((res) => {
 
-
-
-
-
-export function handleNewCommentSubmit() {
+				dispatch(postCommentSuccess(res.data));
+			})
+			.catch((err) => {
+				dispatch(postCommentFailure(err));
+			});
+	};
 
 }
 

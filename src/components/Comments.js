@@ -1,6 +1,12 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { fetchAllComments, changeNewCommentVisibility, resetCommentState, handelNewCommentInput } from '../actions/commentActions';
+import {
+    fetchAllComments,
+    changeNewCommentVisibility,
+    resetCommentState,
+    handelNewCommentInput,
+    postComment
+} from '../actions/commentActions';
 import { map } from 'underscore';
 
 class Comments extends Component {
@@ -26,17 +32,22 @@ class Comments extends Component {
     }
     handleChange(event) {
         event.preventDefault();
-        const text = event.target.value
+        const text = event.target.value;
         this.props.updateCommentInput(text);
+
     }
     handleSubmit(event) {
         event.preventDefault();
+        const id = this.props.belongsTo;
+        const text = this.props.comments.newCommentInput;
+        this.props.newComment(id, text);
+        this.props.resetCommentForm();
     }
     conditionalRender() {
         return this.props.comments.newCommentVisible ?
             <div className='panel'>
                 <div className="panel-body">
-                    <textarea value={this.props.comments.newCommentInput} onChange={this.handleChange} placeholder="Write your comment here!" class="pb-cmnt-textarea"></textarea>
+                    <textarea value={this.props.comments.newCommentInput} onChange={this.handleChange} placeholder="Write your comment here!" className="pb-cmnt-textarea"></textarea>
                     <form className="form-inline">
                         <button onClick={this.handleSubmit} className="btn  pull-left" type="submit">Submit</button>
                         <button onClick={this.handleClick} className="btn  pull-left" type="button">Cancel</button>
@@ -83,7 +94,15 @@ function mapDispatchToProps(dispatch) {
         },
         updateCommentInput: (input) => {
             dispatch(handelNewCommentInput(input))
-        }
+        },
+        newComment: ((id, text) => {
+
+            const data = {
+                belongs_To: id,
+                body: text
+            };
+            dispatch(postComment(id, data));
+        })
     };
 }
 
@@ -91,7 +110,9 @@ function mapStateToProps(state) {
     return {
         comments: state.comments,
         loading: state.comments.loading,
-        error: state.comments.error
+        error: state.comments.error,
+        sending: state.comments.sending,
+        newCommentInput: state.comments.newCommentInput
     };
 }
 
