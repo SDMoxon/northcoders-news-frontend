@@ -42,4 +42,20 @@ export function changeNewCommentVisibility() {
         type: types.CHANGE_NEW_COMMENT_VISIBILITY,
 	};
 }
-
+export function handleNewCommentSubmit() {
+    return {
+        type: types.HANDLE_NEW_COMMENT_SUBMIT,
+ 
+    };
+}
+export function handelNewCommentInput(payload) {
+    return {
+        type: types.HANDLE_NEW_COMMENT_INPUT,
+        payload: payload
+    };
+}
+export function resetCommentState() {
+    return {
+        type: types.RESET_COMMENT_STATE,
+    };
+}

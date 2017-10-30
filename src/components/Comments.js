@@ -7,6 +7,8 @@ class Comments extends Component {
     constructor(props) {
         super(props);
         this.handleClick = this.handleClick.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this);
+        this.handleChange = this.handleChange.bind(this);
     }
     componentWillReceiveProps(nextProps) {
         const currentCommentVisible = this.props.comments.newCommentVisible;
@@ -21,13 +23,20 @@ class Comments extends Component {
     handleClick() {
         this.props.newCommentVisibility();
     }
+    handleChange(event) {
+        event.preventDefault();
+        console.log(event.target.value);
+    }
+    handleSubmit(event) {
+        event.preventDefault();
+    }
     conditionalRender() {
         return this.props.comments.newCommentVisible ?
             <div className='panel'>
                 <div className="panel-body">
-                    <textarea placeholder="Write your comment here!" class="pb-cmnt-textarea"></textarea>
+                    <textarea value='' onChange={this.handleChange} placeholder="Write your comment here!" class="pb-cmnt-textarea"></textarea>
                     <form className="form-inline">
-                        <button className="btn  pull-left" type="button">Submit</button>
+                        <button onClick={this.handleSubmit} className="btn  pull-left" type="submit">Submit</button>
                         <button onClick={this.handleClick} className="btn  pull-left" type="button">Cancel</button>
                     </form>
                 </div>
