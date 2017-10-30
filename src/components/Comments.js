@@ -14,6 +14,7 @@ class Comments extends Component {
         if (nextCommentVisible !== currentCommentVisible) {
             this.props.getComments(this.props.belongsTo);
         }
+        if ()
     }
     componentDidMount() {
         this.props.getComments(this.props.belongsTo);
@@ -23,12 +24,12 @@ class Comments extends Component {
     }
     conditionalRender() {
         return this.props.comments.newCommentVisible ?
-            <div class='panel panel-info'>
+            <div class='panel'>
                 <div class="panel-body">
                     <textarea placeholder="Write your comment here!" class="pb-cmnt-textarea"></textarea>
                     <form class="form-inline">
-                    <button class="btn  pull-left" type="button">Submit</button>
-                        <button onClick={this.handleClick} class="btn  pull-right" type="button">Cancel</button>
+                        <button class="btn  pull-left" type="button">Submit</button>
+                        <button onClick={this.handleClick} class="btn  pull-left" type="button">Cancel</button>
                     </form>
                 </div>
             </div>
@@ -42,10 +43,12 @@ class Comments extends Component {
                 {Object.keys(this.props.comments.comments).length ?
                     map(this.props.comments.comments, (comment) => {
                         return (
-                            <div className='row' key={comment._id}>
-                            <p>{comment.created_by}</p>  
-                            <p>{comment.body}</p>
-
+                            <div className='row panel panel-info' key={comment._id}>
+                                <div class='panel-body'>
+                                    <p>{comment.created_by}</p>
+                                    <p>{comment.body}</p>
+                                    <p>Votes {comment.votes}</p>
+                                </div>
                             </div>
                         );
                     }) : 'Loading'
