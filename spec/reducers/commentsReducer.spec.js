@@ -46,6 +46,15 @@ describe('COMMENTS REDUCER', () => {
             expect(initialState).to.not.equal(newState);
             expect(newState.newCommentInput).equal('This is an input');
         });
+        it('should delete the corect part of the input to reflect change', () => {
+            const prevState = {
+                newCommentInput:'This is an input'
+            };
+            const action = handelNewCommentInput('This is an inpu');
+            const newState = commentsReducer(prevState,action);
+            expect(initialState).to.not.equal(newState);
+            expect(newState.newCommentInput).equal('This is an inpu');
+        });
     });
     describe('resetCommentState', () => {
         it('should reset the comment state on submit and cancel', () => {
