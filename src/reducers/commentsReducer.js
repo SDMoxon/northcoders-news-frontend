@@ -26,7 +26,7 @@ export function commentsReducer(prevState = initialState, action) {
         newState.newCommentVisible = !newState.newCommentVisible;
     }
     else if (action.type === types.HANDLE_NEW_COMMENT_INPUT) {
-        newState.newCommentInput += action.payload;
+        newState.newCommentInput = action.payload;
     }
     else if (action.type === types.RESET_COMMENT_STATE) {
         newState.newCommentInput = '';

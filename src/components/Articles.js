@@ -3,6 +3,7 @@ import Comments from './Comments';
 import { NavLink } from 'react-router-dom'
 import { connect } from 'react-redux';
 import { fetchAllArticles, changeCommentVisibility, fetchSingleArticle } from '../actions/articleActions';
+import { resetCommentState } from '../actions/commentActions';
 import { map } from 'underscore';
 
 class Articles extends Component {
@@ -34,6 +35,7 @@ class Articles extends Component {
     handleClick(e) {
         const articleId = e.target.value;
         this.props.commentVisibility(articleId);
+        this.props.removeUnsavedComments();
     }
     conditionalRender(article) {
         if (Object.keys(this.props.articles.articles).length > 1) {
@@ -94,6 +96,9 @@ function mapDispatchToProps(dispatch) {
         },
         getArticle: (articleId) => {
             dispatch(fetchSingleArticle(articleId));
+        },
+        removeUnsavedComments: () => {
+            dispatch(resetCommentState());
         }
     };
 }

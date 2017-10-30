@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { fetchAllComments, changeNewCommentVisibility } from '../actions/commentActions';
+import { fetchAllComments, changeNewCommentVisibility, resetCommentState, handelNewCommentInput } from '../actions/commentActions';
 import { map } from 'underscore';
 
 class Comments extends Component {
@@ -22,10 +22,12 @@ class Comments extends Component {
     }
     handleClick() {
         this.props.newCommentVisibility();
+        this.props.resetCommentForm()
     }
     handleChange(event) {
         event.preventDefault();
-        console.log(event.target.value);
+        const text = event.target.value
+        this.props.updateCommentInput(text);
     }
     handleSubmit(event) {
         event.preventDefault();
@@ -34,7 +36,7 @@ class Comments extends Component {
         return this.props.comments.newCommentVisible ?
             <div className='panel'>
                 <div className="panel-body">
-                    <textarea value='' onChange={this.handleChange} placeholder="Write your comment here!" class="pb-cmnt-textarea"></textarea>
+                    <textarea value={this.props.comments.newCommentInput} onChange={this.handleChange} placeholder="Write your comment here!" class="pb-cmnt-textarea"></textarea>
                     <form className="form-inline">
                         <button onClick={this.handleSubmit} className="btn  pull-left" type="submit">Submit</button>
                         <button onClick={this.handleClick} className="btn  pull-left" type="button">Cancel</button>
@@ -75,6 +77,12 @@ function mapDispatchToProps(dispatch) {
         },
         newCommentVisibility: () => {
             dispatch(changeNewCommentVisibility());
+        },
+        resetCommentForm: () => {
+            dispatch(resetCommentState());
+        },
+        updateCommentInput: (input) => {
+            dispatch(handelNewCommentInput(input))
         }
     };
 }
