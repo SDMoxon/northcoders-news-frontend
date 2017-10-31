@@ -65,9 +65,37 @@ export function changeCommentVisibility(payload) {
     };
 }
 
-export function articleAlterVotes(payload) {
+export function articleAlterVotes(id, vote) {
+	return function (dispatch) {
+		dispatch(articleAlterVotesRequest());
+		axios
+			.put(`${ROOT}/articles/${id}?vote=${vote}`)
+			.then(() => {
+				dispatch(articleAlterVotesSuccess({ _id: id, vote: vote }));
+			})
+			.catch((err) => {
+				dispatch(articleAlterVotesFailure(err));
+			});
+	};
+
+}
+
+export function articleAlterVotesRequest() {
 	return {
-		type: types.ARTICLE_ALTER_VOTES,
+		type: types.ARTICLE_ALTER_VOTES_REQUEST,
+	};
+}
+
+export function articleAlterVotesSuccess(payload) {
+	return {
+		type: types.ARTICLE_ALTER_VOTES_SUCCESS,
+		payload: payload
+	};
+}
+
+export function articleAlterVotesFailure(payload) {
+	return {
+		type: types.ARTICLE_ALTER_VOTES_FAILURE,
 		payload: payload
 	};
 }
