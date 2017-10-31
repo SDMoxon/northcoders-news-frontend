@@ -35,11 +35,32 @@ describe('Articles Actions', () => {
         });
     });
     describe('articleAlterVotes', () => {
-        it('returns object with correct payload', () => {
-            const payload = 'up';
-            expect(articleActions.articleAlterVotes(payload)).to.eql({
-                type: types.ARTICLE_ALTER_VOTES,
-                payload: payload
+        describe('articleAlterVotesRequest', () => {
+            it('returns object with correct payload', () => {
+                const payload = 'up';
+                expect(articleActions.articleAlterVotesRequest(payload)).to.eql({
+                    type: types.ARTICLE_ALTER_VOTES_REQUEST,
+                });
+            });
+        });
+        describe('articleAlterVotesSuccess', () => {
+            it('returns object with correct payload', () => {
+                const payload = {
+                    articleId:12345
+                };
+                expect(articleActions.articleAlterVotesSuccess(payload)).to.eql({
+                    type: types.ARTICLE_ALTER_VOTES_SUCCESS,
+                    payload: payload
+                });
+            });
+        });
+        describe('articleAlterVotesFailure', () => {
+            it('returns object with correct payload', () => {
+                const payload = 'Error!';
+                expect(articleActions.articleAlterVotesFailure(payload)).to.eql({
+                    type: types.ARTICLE_ALTER_VOTES_FAILURE,
+                    payload: payload
+                });
             });
         });
     });
