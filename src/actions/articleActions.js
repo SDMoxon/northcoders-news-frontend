@@ -64,3 +64,10 @@ export function changeCommentVisibility(payload) {
         payload: payload
     };
 }
+
+export function articleAlterVotes(payload) {
+	return {
+		type: types.ARTICLE_ALTER_VOTES,
+		payload: payload
+	};
+}

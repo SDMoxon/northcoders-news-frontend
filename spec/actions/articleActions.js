@@ -34,4 +34,13 @@ describe('Articles Actions', () => {
             });
         });
     });
+    describe('articleAlterVotes', () => {
+        it('returns object with correct payload', () => {
+            const payload = 'up';
+            expect(articleActions.articleAlterVotes(payload)).to.eql({
+                type: types.ARTICLE_ALTER_VOTES,
+                payload: payload
+            });
+        });
+    });
 });
