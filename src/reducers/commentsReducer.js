@@ -36,11 +36,25 @@ export function commentsReducer(prevState = initialState, action) {
         newState.sending = true;
     }
     else if (action.type === types.POST_COMMENTS_SUCCESS) {
+        newState.comments =Object.assign({}, newState.comments);
         newState.comments[action.payload._id] = action.payload;
         newState.sending = false;
     }
     else if (action.type === types.POST_COMMENTS_FAILURE) {
         newState.error = action.payload;
+        newState.sending = false;
+    }
+    else if (action.type === types.COMMENT_ALTER_VOTES_REQUEST) {
+        newState.sending = true;
+    }
+    else if (action.type === types.COMMENT_ALTER_VOTES_SUCCESS) {
+        newState.comments = Object.assign({}, newState.comments);
+        newState.comments[action.payload._id] = Object.assign({}, newState.comments[action.payload._id]);
+        newState.comments[action.payload._id].votes += 1;
+        newState.sending = false;
+    }
+    else if (action.type === types.COMMENT_ALTER_VOTES_FAILURE) {
+        newState.error = action.payload.error;
         newState.sending = false;
     }
     else {
