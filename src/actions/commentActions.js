@@ -90,7 +90,25 @@ export function postCommentFailure(error) {
 	};
 }
 
-export function commentAlterVotes(payload) {
+
+export function commentAlterVotes() {
+}
+
+export function commentAlterVotesRequest(payload) {
+	return {
+		type: types.COMMENT_ALTER_VOTES,
+		payload: payload
+	};
+}
+
+export function commentAlterVotesSuccess(payload) {
+	return {
+		type: types.COMMENT_ALTER_VOTES,
+		payload: payload
+	};
+}
+
+export function commentAlterVotesFailure(payload) {
 	return {
 		type: types.COMMENT_ALTER_VOTES,
 		payload: payload
