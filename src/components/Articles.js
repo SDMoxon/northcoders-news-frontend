@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Comments from './Comments';
 import { NavLink } from 'react-router-dom'
 import { connect } from 'react-redux';
-import { fetchAllArticles, changeCommentVisibility, fetchSingleArticle } from '../actions/articleActions';
+import { fetchAllArticles, changeCommentVisibility, fetchSingleArticle, articleAlterVotes } from '../actions/articleActions';
 import { resetCommentState } from '../actions/commentActions';
 import { map } from 'underscore';
 
@@ -11,6 +11,7 @@ class Articles extends Component {
         super(props);
         this.handleClick = this.handleClick.bind(this);
         this.conditionalRender = this.conditionalRender.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this);
     }
     componentWillReceiveProps(nextProps) {
         const currentTopic = this.props.match.params.id;
@@ -39,7 +40,11 @@ class Articles extends Component {
     }
     handleSubmit(event) {
         event.preventDefault();
-        console.log(event.target.value);
+        const eventValues = event.target.value.split(' ');
+
+        const vote = eventValues[0];
+        const id = eventValues[1];
+        this.props.adjustVote(id, vote);
     }
     conditionalRender(article) {
         if (Object.keys(this.props.articles.articles).length > 1) {
@@ -50,8 +55,8 @@ class Articles extends Component {
                         <p>{article.body}</p>
                         <form className="form-inline">
                             <p>Votes {article.votes}</p>
-                            <button value ='up'onClick={this.handleSubmit} className="btn  pull-left" type="submit"> vote up</button>
-                            <button value='down' onClick={this.handleSubmit} className="btn  pull-left" type="submit"> vote down</button>
+                            <button value={`up ${article._id}`} onClick={this.handleSubmit} className="btn  pull-left" type="submit"> vote up</button>
+                            <button value={`down ${article._id}`} onClick={this.handleSubmit} className="btn  pull-left" type="submit"> vote down</button>
                         </form>
                     </div>
                 </div>
@@ -66,8 +71,8 @@ class Articles extends Component {
                             <p>{article.body}</p>
                             <form className="form-inline">
                                 <p>Votes {article.votes}</p>
-                                <button value='up'onClick={this.handleSubmit} className="btn  pull-left" type="submit"> vote up</button>
-                                <button value='down' onClick={this.handleSubmit} className="btn  pull-left" type="submit"> vote down</button>
+                                <button value={`up ${article._id}`} onClick={this.handleSubmit} className="btn  pull-left" type="submit"> vote up</button>
+                                <button value={`down ${article._id}`} onClick={this.handleSubmit} className="btn  pull-left" type="submit"> vote down</button>
                             </form>
                         </div>
                     </div>
@@ -111,6 +116,9 @@ function mapDispatchToProps(dispatch) {
         },
         removeUnsavedComments: () => {
             dispatch(resetCommentState());
+        },
+        adjustVote: (id, vote) => {
+            dispatch(articleAlterVotes(id, vote));
         }
     };
 }
