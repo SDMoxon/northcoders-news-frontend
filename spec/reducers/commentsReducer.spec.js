@@ -8,7 +8,11 @@ import {
     resetCommentState,
     postCommentSuccess,
     postCommentFailure,
-    postCommentRequest
+    postCommentRequest,
+    commentAlterVotesRequest,
+    commentAlterVotesSuccess,
+    commentAlterVotesFailure
+
 } from '../../src/actions/commentActions';
 import { initialState, commentsReducer } from '../../src/reducers/commentsReducer';
 
@@ -137,12 +141,43 @@ describe('COMMENTS REDUCER', () => {
         });
     });
     describe('alterCommentVotes', () => {
-        it('increases the count of comment votes when given up and the commentId as the payload', () => {
+        it('sets sending to true when action is alterCommentVotesRequest', () => {
+            const action = commentAlterVotesRequest();
+            const newState = commentsReducer(initialState, action);
+            expect(initialState).to.not.equal(newState);
+            expect(newState.sending).to.be.true;
+        });
+
+        it('increases the count of comment votes when alterCommentVotesSuccess is given', () => {
             const payload = {
-                commentId
+                _id: 12345,
+                vote: 'up'
+
+            };
+            const prevState = {
+                comments: {
+                    12345: {
+                        votes: 0,
+                        body: 'this is a thing'
+                    }
+                }
             }
+            const action = commentAlterVotesSuccess(payload);
+            const newState = commentsReducer(prevState, action);
             expect(initialState).to.not.equal(newState);
             expect(newState.sending).be.false;
+            expect(newState.comments[12345].votes).equal(prevState.comments[12345].votes + 1);
+        });
+        it('adds an error if alterCommentVotesSuccess called', () => {
+            const payload = {
+                error: 'ERROR'
+
+            };
+            const action = commentAlterVotesFailure(payload);
+            const newState = commentsReducer(initialState, action);
+            expect(initialState).to.not.equal(newState);
+            expect(newState.sending).be.false;
+            expect(newState.error).equal('ERROR');
         });
     });
 });
