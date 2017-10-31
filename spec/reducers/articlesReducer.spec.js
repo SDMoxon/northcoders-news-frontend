@@ -1,5 +1,11 @@
 import { expect } from 'chai';
-import { fetchArticlesRequest, fetchArticlesSuccess, fetchArticlesFailure, changeCommentVisibility } from '../../src/actions/articleActions';
+import { fetchArticlesRequest, 
+        fetchArticlesSuccess, 
+        fetchArticlesFailure, 
+        changeCommentVisibility,
+        articleAlterVotesRequest,
+        articleAlterVotesSuccess,
+        articleAlterVotesFailure } from '../../src/actions/articleActions';
 import { initialState, articlesReducer } from '../../src/reducers/articlesReducer';
 
 describe('ARTICLES REDUCER', () => {
@@ -59,4 +65,64 @@ describe('ARTICLES REDUCER', () => {
             expect(newstate.articles.A1234.commentVisable).be.false;
         });
     });
+    describe.only('alterArticletVotes', () => {
+        it('sets sending to true when action is alterArticletVotesRequest', () => {
+            const action = articleAlterVotesRequest();
+            const newState = articlesReducer(initialState, action);
+            expect(initialState).to.not.equal(newState);
+            expect(newState.sending).to.be.true;
+        });
+
+        it('increases the count of article votes when alterArticletVotesSuccess is given with up', () => {
+            const payload = {
+                _id: 12345,
+                vote: 'up'
+
+            };
+            const prevState = {
+                articles: {
+                    12345: {
+                        votes: 0,
+                        body: 'this is a thing'
+                    }
+                }
+            }
+            const action = articleAlterVotesSuccess(payload);
+            const newState = articlesReducer(prevState, action);
+            expect(initialState).to.not.equal(newState);
+            expect(newState.sending).be.false;
+            expect(newState.articles[12345].votes).equal(prevState.articles[12345].votes + 1);
+        });
+        it('decreases the count of article votes when alterArticletVotesSuccess is given with down', () => {
+            const payload = {
+                _id: 12345,
+                vote: 'down'
+
+            };
+            const prevState = {
+                articles: {
+                    12345: {
+                        votes: 0,
+                        body: 'this is a thing'
+                    }
+                }
+            }
+            const action = articleAlterVotesSuccess(payload);
+            const newState = articlesReducer(prevState, action);
+            expect(initialState).to.not.equal(newState);
+            expect(newState.sending).be.false;
+            expect(newState.articles[12345].votes).equal(prevState.articles[12345].votes - 1);
+        });
+        it('adds an error if alterArticletVotesSuccess called', () => {
+            const payload = {
+                error: 'ERROR'
+
+            };
+            const action = articleAlterVotesFailure(payload);
+            const newState = articlesReducer(initialState, action);
+            expect(initialState).to.not.equal(newState);
+            expect(newState.sending).be.false;
+            expect(newState.error).equal('ERROR');
+        });
+    }); 
 });

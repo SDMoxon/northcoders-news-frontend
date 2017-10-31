@@ -199,5 +199,5 @@ describe('COMMENTS REDUCER', () => {
             expect(newState.sending).be.false;
             expect(newState.error).equal('ERROR');
         });
-    });
+    }); 
 });
