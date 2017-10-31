@@ -94,23 +94,22 @@ export function postCommentFailure(error) {
 export function commentAlterVotes() {
 }
 
-export function commentAlterVotesRequest(payload) {
+export function commentAlterVotesRequest() {
 	return {
-		type: types.COMMENT_ALTER_VOTES,
-		payload: payload
+		type: types.COMMENT_ALTER_VOTES_REQUEST,
 	};
 }
 
 export function commentAlterVotesSuccess(payload) {
 	return {
-		type: types.COMMENT_ALTER_VOTES,
+		type: types.COMMENT_ALTER_VOTES_SUCCESS,
 		payload: payload
 	};
 }
 
 export function commentAlterVotesFailure(payload) {
 	return {
-		type: types.COMMENT_ALTER_VOTES,
+		type: types.COMMENT_ALTER_VOTES_FAILURE,
 		payload: payload
 	};
 }
