@@ -65,7 +65,7 @@ describe('ARTICLES REDUCER', () => {
             expect(newstate.articles.A1234.commentVisable).be.false;
         });
     });
-    describe.only('alterArticletVotes', () => {
+    describe('alterArticletVotes', () => {
         it('sets sending to true when action is alterArticletVotesRequest', () => {
             const action = articleAlterVotesRequest();
             const newState = articlesReducer(initialState, action);
