@@ -74,8 +74,8 @@ describe('Comments Actions', () => {
         describe('commentAlterVotesRequest', () => {
             it('returns object with correct payload', () => {
                 const payload = 'up';
-                expect(commentActions.commentAlterVotes(payload)).to.eql({
-                    type: types.COMMENT_ALTER_VOTESR_Request,
+                expect(commentActions.commentAlterVotesRequest(payload)).to.eql({
+                    type: types.COMMENT_ALTER_VOTES_REQUEST,
                 });
             });
         });
