@@ -87,28 +87,28 @@ describe('COMMENTS REDUCER', () => {
         });
         it('should add new comment when successful', () => {
             const action = postCommentSuccess({
-                body:'body',
-                _id:'1234',
-                user:'McTestison'
+                body: 'body',
+                _id: '1234',
+                user: 'McTestison'
             });
             const newState = commentsReducer(initialState, action);
             expect(initialState).to.not.equal(newState);
             expect(newState.comments).eql({
-                1234:{
-                        body:'body',
-                        _id:'1234',
-                        user:'McTestison'
-                    }
+                1234: {
+                    body: 'body',
+                    _id: '1234',
+                    user: 'McTestison'
+                }
             });
         });
         it('should change sending to false when successful', () => {
             const action = postCommentSuccess({
-                body:'body',
-                _id:'1234',
-                user:'McTestison'
+                body: 'body',
+                _id: '1234',
+                user: 'McTestison'
             });
             const prevState = {
-                comments:{},
+                comments: {},
                 sending: true
             }
             const newState = commentsReducer(prevState, action);
@@ -126,12 +126,21 @@ describe('COMMENTS REDUCER', () => {
         it('should change sending to false when failed', () => {
             const error = 'error!';
             const prevState = {
-                comments:{},
+                comments: {},
                 sending: true
             }
             const action = postCommentFailure(error)
             const newState = commentsReducer(prevState, action);
 
+            expect(initialState).to.not.equal(newState);
+            expect(newState.sending).be.false;
+        });
+    });
+    describe('alterCommentVotes', () => {
+        it('increases the count of comment votes when given up and the commentId as the payload', () => {
+            const payload = {
+                commentId
+            }
             expect(initialState).to.not.equal(newState);
             expect(newState.sending).be.false;
         });
