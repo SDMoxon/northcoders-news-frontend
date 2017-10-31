@@ -70,7 +70,7 @@ describe('Comments Actions', () => {
             });
         });
     });
-    describe.only('commentAlterVotes', () => {
+    describe('commentAlterVotes', () => {
         describe('commentAlterVotesRequest', () => {
             it('returns object with correct payload', () => {
                 const payload = 'up';
