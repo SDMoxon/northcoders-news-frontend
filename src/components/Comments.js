@@ -13,7 +13,7 @@ class Comments extends Component {
     constructor(props) {
         super(props);
         this.handleClick = this.handleClick.bind(this);
-        this.handleSubmit = this.handleSubmit.bind(this);
+        this.handleTextSubmit = this.handleTextSubmit.bind(this);
         this.handleChange = this.handleChange.bind(this);
     }
     componentWillReceiveProps(nextProps) {
@@ -36,12 +36,16 @@ class Comments extends Component {
         this.props.updateCommentInput(text);
 
     }
-    handleSubmit(event) {
+    handleTextSubmit(event) {
         event.preventDefault();
         const id = this.props.belongsTo;
         const text = this.props.comments.newCommentInput;
         this.props.newComment(id, text);
         this.props.resetCommentForm();
+    }
+    handleSubmit(event) {
+        event.preventDefault();
+        console.log(event.target.value);
     }
     conditionalRender() {
         return this.props.comments.newCommentVisible ?
@@ -49,14 +53,14 @@ class Comments extends Component {
                 <div className="panel-body">
                     <textarea value={this.props.comments.newCommentInput} onChange={this.handleChange} placeholder="Write your comment here!" className="pb-cmnt-textarea"></textarea>
                     <form className="form-inline">
-                        <button onClick={this.handleSubmit} className="btn  pull-left" type="submit">Submit</button>
+                        <button onClick={this.handleTextSubmit} className="btn  pull-left" type="submit">Submit</button>
                         <button onClick={this.handleClick} className="btn  pull-left" type="button">Cancel</button>
                     </form>
                 </div>
             </div>
 
             :
-            <button className="btn" onClick={this.handleClick}>Add New Comment</button>
+            <button className="btn" onClick={this.handleClick}>Add New Comment</button>;
     }
     render() {
         return (
@@ -68,7 +72,11 @@ class Comments extends Component {
                                 <div className='panel-body'>
                                     <p>{comment.created_by}</p>
                                     <p>{comment.body}</p>
-                                    <p>Votes {comment.votes}</p>
+                                    <form className="form-inline">
+                                        <p>Votes {comment.votes}</p>
+                                        <button value='up' onClick={this.handleSubmit} className="btn  pull-left" type="submit"> vote up</button>
+                                        <button value='down' onClick={this.handleSubmit} className="btn  pull-left" type="submit"> vote down</button>
+                                    </form>
                                 </div>
                             </div>
                         );

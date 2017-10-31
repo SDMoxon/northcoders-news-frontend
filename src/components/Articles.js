@@ -32,10 +32,14 @@ class Articles extends Component {
             this.props.getArticles(this.props.match.params.id);
         }
     }
-    handleClick(e) {
-        const articleId = e.target.value;
+    handleClick(event) {
+        const articleId = event.target.value;
         this.props.commentVisibility(articleId);
         this.props.removeUnsavedComments();
+    }
+    handleSubmit(event) {
+        event.preventDefault();
+        console.log(event.target.value);
     }
     conditionalRender(article) {
         if (Object.keys(this.props.articles.articles).length > 1) {
@@ -44,7 +48,11 @@ class Articles extends Component {
                     <div className='panel-body'>
                         <NavLink to={`/articles/${article._id}`} >{article.title}</NavLink>
                         <p>{article.body}</p>
-                        <p>Votes {article.votes}</p>
+                        <form className="form-inline">
+                            <p>Votes {article.votes}</p>
+                            <button value ='up'onClick={this.handleSubmit} className="btn  pull-left" type="submit"> vote up</button>
+                            <button value='down' onClick={this.handleSubmit} className="btn  pull-left" type="submit"> vote down</button>
+                        </form>
                     </div>
                 </div>
             );
@@ -54,9 +62,13 @@ class Articles extends Component {
                 <div className='row ' key={article._id}>
                     <div className='panel panel-info'>
                         <div className='panel-body'>
-                        <p>{article.title}</p>
-                        <p>{article.body}</p>
-                        <p>Votes {article.votes}</p>
+                            <p>{article.title}</p>
+                            <p>{article.body}</p>
+                            <form className="form-inline">
+                                <p>Votes {article.votes}</p>
+                                <button value='up'onClick={this.handleSubmit} className="btn  pull-left" type="submit"> vote up</button>
+                                <button value='down' onClick={this.handleSubmit} className="btn  pull-left" type="submit"> vote down</button>
+                            </form>
                         </div>
                     </div>
                     {
