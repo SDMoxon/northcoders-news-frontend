@@ -1,12 +1,12 @@
 import * as types from '../types';
-import {normaliseData} from '../utils';
+import { normaliseData } from '../utils';
 export const initialState = {
     comments: {},
     loading: false,
     sending: false,
     error: null,
     newCommentVisible: false,
-    newCommentInput:''
+    newCommentInput: ''
 };
 
 export function commentsReducer(prevState = initialState, action) {
@@ -36,7 +36,7 @@ export function commentsReducer(prevState = initialState, action) {
         newState.sending = true;
     }
     else if (action.type === types.POST_COMMENTS_SUCCESS) {
-        newState.comments =Object.assign({}, newState.comments);
+        newState.comments = Object.assign({}, newState.comments);
         newState.comments[action.payload._id] = action.payload;
         newState.sending = false;
     }
@@ -48,9 +48,10 @@ export function commentsReducer(prevState = initialState, action) {
         newState.sending = true;
     }
     else if (action.type === types.COMMENT_ALTER_VOTES_SUCCESS) {
+        const vote = action.payload.vote === 'up' ? 1 : -1;
         newState.comments = Object.assign({}, newState.comments);
         newState.comments[action.payload._id] = Object.assign({}, newState.comments[action.payload._id]);
-        newState.comments[action.payload._id].votes += 1;
+        newState.comments[action.payload._id].votes += vote;
         newState.sending = false;
     }
     else if (action.type === types.COMMENT_ALTER_VOTES_FAILURE) {
