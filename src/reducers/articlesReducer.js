@@ -29,6 +29,20 @@ export function articlesReducer(prevState = initialState, action) {
         newState.articles[action.payload].commentVisable = !newState.articles[action.payload].commentVisable;
         
     }
+    else if (action.type === types.ARTICLE_ALTER_VOTES_REQUEST) {
+        newState.sending = true;
+    }
+    else if (action.type === types.ARTICLE_ALTER_VOTES_SUCCESS) {
+        const vote = action.payload.vote === 'up' ? 1 : -1;
+        newState.articles = Object.assign({}, newState.articles);
+        newState.articles[action.payload._id] = Object.assign({}, newState.articles[action.payload._id]);
+        newState.articles[action.payload._id].votes += vote;
+        newState.sending = false;
+    }
+    else if (action.type === types.ARTICLE_ALTER_VOTES_FAILURE) {
+        newState.error = action.payload.error;
+        newState.sending = false;
+    }
     else {
         return prevState;
     }
