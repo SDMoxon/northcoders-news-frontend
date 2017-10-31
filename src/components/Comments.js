@@ -5,7 +5,8 @@ import {
     changeNewCommentVisibility,
     resetCommentState,
     handelNewCommentInput,
-    postComment
+    postComment,
+    commentAlterVotes
 } from '../actions/commentActions';
 import { map } from 'underscore';
 
@@ -15,6 +16,7 @@ class Comments extends Component {
         this.handleClick = this.handleClick.bind(this);
         this.handleTextSubmit = this.handleTextSubmit.bind(this);
         this.handleChange = this.handleChange.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this);
     }
     componentWillReceiveProps(nextProps) {
         const currentCommentVisible = this.props.comments.newCommentVisible;
@@ -45,7 +47,11 @@ class Comments extends Component {
     }
     handleSubmit(event) {
         event.preventDefault();
-        console.log(event.target.value);
+        const eventValues = event.target.value.split(' ');
+        console.log(eventValues);
+        const vote = eventValues[0];
+        const id = eventValues[1];
+        this.props.adjustVote(id, vote);
     }
     conditionalRender() {
         return this.props.comments.newCommentVisible ?
@@ -74,8 +80,8 @@ class Comments extends Component {
                                     <p>{comment.body}</p>
                                     <form className="form-inline">
                                         <p>Votes {comment.votes}</p>
-                                        <button value='up' onClick={this.handleSubmit} className="btn  pull-left" type="submit"> vote up</button>
-                                        <button value='down' onClick={this.handleSubmit} className="btn  pull-left" type="submit"> vote down</button>
+                                        <button value={`up ${comment._id}`} onClick={this.handleSubmit} className="btn  pull-left" type="submit"> vote up</button>
+                                        <button value={`down ${comment._id}`} onClick={this.handleSubmit} className="btn  pull-left" type="submit"> vote down</button>
                                     </form>
                                 </div>
                             </div>
@@ -110,7 +116,11 @@ function mapDispatchToProps(dispatch) {
                 body: text
             };
             dispatch(postComment(id, data));
-        })
+        }),
+        adjustVote: (id,vote) => {
+            console.log('working')
+            dispatch(commentAlterVotes(id,vote));
+        }
     };
 }
 
