@@ -148,7 +148,7 @@ describe('COMMENTS REDUCER', () => {
             expect(newState.sending).to.be.true;
         });
 
-        it('increases the count of comment votes when alterCommentVotesSuccess is given', () => {
+        it('increases the count of comment votes when alterCommentVotesSuccess is given with up', () => {
             const payload = {
                 _id: 12345,
                 vote: 'up'
@@ -167,6 +167,26 @@ describe('COMMENTS REDUCER', () => {
             expect(initialState).to.not.equal(newState);
             expect(newState.sending).be.false;
             expect(newState.comments[12345].votes).equal(prevState.comments[12345].votes + 1);
+        });
+        it('decreases the count of comment votes when alterCommentVotesSuccess is given with down', () => {
+            const payload = {
+                _id: 12345,
+                vote: 'down'
+
+            };
+            const prevState = {
+                comments: {
+                    12345: {
+                        votes: 0,
+                        body: 'this is a thing'
+                    }
+                }
+            }
+            const action = commentAlterVotesSuccess(payload);
+            const newState = commentsReducer(prevState, action);
+            expect(initialState).to.not.equal(newState);
+            expect(newState.sending).be.false;
+            expect(newState.comments[12345].votes).equal(prevState.comments[12345].votes - 1);
         });
         it('adds an error if alterCommentVotesSuccess called', () => {
             const payload = {
