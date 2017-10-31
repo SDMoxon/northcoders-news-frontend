@@ -48,7 +48,7 @@ class Comments extends Component {
     handleSubmit(event) {
         event.preventDefault();
         const eventValues = event.target.value.split(' ');
-        console.log(eventValues);
+
         const vote = eventValues[0];
         const id = eventValues[1];
         this.props.adjustVote(id, vote);
@@ -118,7 +118,6 @@ function mapDispatchToProps(dispatch) {
             dispatch(postComment(id, data));
         }),
         adjustVote: (id,vote) => {
-            console.log('working')
             dispatch(commentAlterVotes(id,vote));
         }
     };
