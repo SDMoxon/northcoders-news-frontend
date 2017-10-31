@@ -38,20 +38,20 @@ export function fetchCommentsSuccess(payload) {
 	};
 }
 export function changeNewCommentVisibility() {
-    return {
-        type: types.CHANGE_NEW_COMMENT_VISIBILITY,
+	return {
+		type: types.CHANGE_NEW_COMMENT_VISIBILITY,
 	};
 }
 export function handelNewCommentInput(payload) {
-    return {
-        type: types.HANDLE_NEW_COMMENT_INPUT,
-        payload: payload
-    };
+	return {
+		type: types.HANDLE_NEW_COMMENT_INPUT,
+		payload: payload
+	};
 }
 export function resetCommentState() {
-    return {
-        type: types.RESET_COMMENT_STATE,
-    };
+	return {
+		type: types.RESET_COMMENT_STATE,
+	};
 }
 
 export function postComment(id, data) {
@@ -71,21 +71,28 @@ export function postComment(id, data) {
 }
 
 export function postCommentRequest() {
-    return {
-        type: types.POST_COMMENTS_REQUEST,
- 
-    };
+	return {
+		type: types.POST_COMMENTS_REQUEST,
+
+	};
 }
 export function postCommentSuccess(payload) {
-    return {
-        type: types.POST_COMMENTS_SUCCESS,
-		payload:payload
-    };
+	return {
+		type: types.POST_COMMENTS_SUCCESS,
+		payload: payload
+	};
 }
 export function postCommentFailure(error) {
-    return {
+	return {
 		type: types.POST_COMMENTS_FAILURE,
 		payload: error
- 
-    };
+
+	};
+}
+
+export function commentAlterVotes(payload) {
+	return {
+		type: types.COMMENT_ALTER_VOTES,
+		payload: payload
+	};
 }
