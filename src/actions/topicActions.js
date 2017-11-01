@@ -1,6 +1,6 @@
 import * as types from '../types';
 import axios from 'axios';
-import {ROOT} from '../../config';
+import {ROOT} from '../config';
 
 export function fetchAllTopics () {
     return function (dispatch) {
