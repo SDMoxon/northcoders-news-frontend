@@ -1,6 +1,6 @@
 import * as types from '../types';
 import axios from 'axios';
-const ROOT = 'http://localhost:3080/api';
+import {ROOT} from '../../config';
 
 export function fetchAllTopics () {
     return function (dispatch) {
