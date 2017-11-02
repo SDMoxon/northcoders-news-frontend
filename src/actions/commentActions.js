@@ -1,6 +1,6 @@
 import * as types from '../types';
 import axios from 'axios';
-import {ROOT} from '../config';
+import { ROOT } from '../config';
 
 export function fetchAllComments(id) {
 	return function (dispatch) {
@@ -8,8 +8,10 @@ export function fetchAllComments(id) {
 		axios
 			.get(`${ROOT}/articles/${id}/comments`)
 			.then((res) => {
-				console.log(res);
-				dispatch(fetchCommentsSuccess(res.data.comments));
+				setTimeout(() => {
+					dispatch(fetchCommentsSuccess(res.data.comments));
+				}, 1000);
+
 			})
 			.catch((err) => {
 				dispatch(fetchCommentsFailure(err));

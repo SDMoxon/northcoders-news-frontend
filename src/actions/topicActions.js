@@ -1,14 +1,17 @@
 import * as types from '../types';
 import axios from 'axios';
-import {ROOT} from '../config';
+import { ROOT } from '../config';
 
-export function fetchAllTopics () {
+export function fetchAllTopics() {
     return function (dispatch) {
         dispatch(fetchTopicsRequest());
         axios
             .get(`${ROOT}/topics`)
             .then(res => {
-                dispatch(fetchTopicsSuccess(res.data.topics));
+                setTimeout(() => {
+                    dispatch(fetchTopicsSuccess(res.data.topics));
+                }, 1000);
+
             })
             .catch(err => {
                 console.log(err);
@@ -17,23 +20,23 @@ export function fetchAllTopics () {
     };
 }
 
-export function fetchTopicsRequest () {
-	return {
-		type: types.FETCH_TOPICS_REQUEST,
-	};
+export function fetchTopicsRequest() {
+    return {
+        type: types.FETCH_TOPICS_REQUEST,
+    };
 }
 
-export function fetchTopicsFailure (payload) {
-	return {
-		type: types.FETCH_TOPICS_FAILURE,
-		payload: payload
-	};
+export function fetchTopicsFailure(payload) {
+    return {
+        type: types.FETCH_TOPICS_FAILURE,
+        payload: payload
+    };
 }
 
-export function fetchTopicsSuccess (payload) {
-	return {
-		type: types.FETCH_TOPICS_SUCCESS,
-		payload: payload
-	};
+export function fetchTopicsSuccess(payload) {
+    return {
+        type: types.FETCH_TOPICS_SUCCESS,
+        payload: payload
+    };
 }
 

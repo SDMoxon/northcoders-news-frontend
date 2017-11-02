@@ -59,34 +59,34 @@ class Comments extends Component {
                 <div className="panel-body">
                     <textarea value={this.props.comments.newCommentInput} onChange={this.handleChange} placeholder="Write your comment here!" className="pb-cmnt-textarea"></textarea>
                     <form className="form-inline">
-                        <button onClick={this.handleTextSubmit} className="btn  pull-left" type="submit">Submit</button>
-                        <button onClick={this.handleClick} className="btn  pull-left" type="button">Cancel</button>
+                        <button onClick={this.handleTextSubmit} className="btn btn-default pull-left" type="submit">Submit</button>
+                        <button onClick={this.handleClick} className="btn btn-default pull-left" type="button">Cancel</button>
                     </form>
                 </div>
             </div>
 
             :
-            <button className="btn" onClick={this.handleClick}>Add New Comment</button>;
+            <button className="btn btn-default" onClick={this.handleClick}>Add New Comment</button>;
     }
     render() {
         return (
             <div className="comments container">
-                {Object.keys(this.props.comments.comments).length ?
+                {this.props.comments.loading === false ?
                     map(this.props.comments.comments, (comment) => {
                         return (
-                            <div className='row panel panel-info' key={comment._id}>
+                            <div className='row panel' key={comment._id}>
                                 <div className='panel-body'>
-                                    <p>{comment.created_by}</p>
                                     <p>{comment.body}</p>
+                                    <p>{comment.created_by}</p>
                                     <form className="form-inline">
                                         <p>Votes {comment.votes}</p>
-                                        <button value={`up ${comment._id}`} onClick={this.handleSubmit} className="btn  pull-left" type="submit"> vote up</button>
-                                        <button value={`down ${comment._id}`} onClick={this.handleSubmit} className="btn  pull-left" type="submit"> vote down</button>
+                                        <button value={`up ${comment._id}`} onClick={this.handleSubmit} className="btn btn-default pull-left" type="submit"> vote up</button>
+                                        <button value={`down ${comment._id}`} onClick={this.handleSubmit} className="btn btn-default pull-left" type="submit"> vote down</button>
                                     </form>
                                 </div>
                             </div>
                         );
-                    }) : 'Loading'
+                    }) : <div className='container-fluid loader'></div> 
 
                 }
                 {this.conditionalRender()}

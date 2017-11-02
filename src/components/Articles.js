@@ -49,14 +49,15 @@ class Articles extends Component {
     conditionalRender(article) {
         if (Object.keys(this.props.articles.articles).length > 1) {
             return (
-                <div className='row panel panel-info' key={article._id}>
+                <div className='row panel' key={article._id}>
                     <div className='panel-body'>
                         <NavLink to={`/articles/${article._id}`} >{article.title}</NavLink>
-                        <p>{article.body}</p>
+                        <p>{`${article.body.slice(0, 50)}...`}</p>
                         <form className="form-inline">
+                        <p>{article.created_by}</p>
                             <p>Votes {article.votes}</p>
-                            <button value={`up ${article._id}`} onClick={this.handleSubmit} className="btn  pull-left" type="submit"> vote up</button>
-                            <button value={`down ${article._id}`} onClick={this.handleSubmit} className="btn  pull-left" type="submit"> vote down</button>
+                            <button value={`up ${article._id}`} onClick={this.handleSubmit} className="btn btn-default pull-left" type="submit"> vote up</button>
+                            <button value={`down ${article._id}`} onClick={this.handleSubmit} className="btn btn-default pull-left" type="submit"> vote down</button>
                         </form>
                     </div>
                 </div>
@@ -65,25 +66,26 @@ class Articles extends Component {
         else {
             return (
                 <div className='row ' key={article._id}>
-                    <div className='panel panel-info'>
+                    <div className='panel panel'>
                         <div className='panel-body'>
                             <p>{article.title}</p>
                             <p>{article.body}</p>
+                            <p>{article.created_by}</p>
                             <form className="form-inline">
                                 <p>Votes {article.votes}</p>
-                                <button value={`up ${article._id}`} onClick={this.handleSubmit} className="btn  pull-left" type="submit"> vote up</button>
-                                <button value={`down ${article._id}`} onClick={this.handleSubmit} className="btn  pull-left" type="submit"> vote down</button>
+                                <button value={`up ${article._id}`} onClick={this.handleSubmit} className="btn btn-default pull-left" type="submit"> vote up</button>
+                                <button value={`down ${article._id}`} onClick={this.handleSubmit} className="btn btn-default pull-left" type="submit"> vote down</button>
                             </form>
                         </div>
                     </div>
                     {
                         this.props.articles.articles[article._id].commentVisable ?
                             <div>
-                                <button className="btn" onClick={this.handleClick} value={article._id}>Hide Comments</button>
+                                <button className="btn btn-default" onClick={this.handleClick} value={article._id}>Hide Comments</button>
                                 <Comments belongsTo={article._id} />
                             </div>
                             :
-                            <button className="btn" onClick={this.handleClick} value={article._id}>Show Comments</button>
+                            <button className="btn btn-default" onClick={this.handleClick} value={article._id}>Show Comments</button>
                     }
                 </div>
             );
@@ -93,10 +95,10 @@ class Articles extends Component {
         return (
             <div className="articles container">
 
-                {Object.keys(this.props.articles.articles).length ?
+                {this.props.articles.loading === false ?
                     map(this.props.articles.articles, (article) => {
-                        return this.conditionalRender(article)
-                    }) : 'Loading'
+                        return this.conditionalRender(article);
+                    }) : <div className='container-fluid loader'></div> 
 
                 }
             </div>

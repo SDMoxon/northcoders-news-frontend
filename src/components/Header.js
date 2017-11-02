@@ -8,20 +8,24 @@ class Header extends Component {
     componentDidMount() {
         this.props.getTopics();
     }
+    conditionalRender() {
+        return this.props.topics.loading === false ? 
+        <div className='header navbar navbar-default'>
+                <div id="navbar" className="collapse navbar-collapse">
+                    <ul className="nav navbar-nav">
+                        <li><a href='/'>Home</a></li>
+                        {map(this.props.topics.topics, (topic) => {
+                            return <li><NavLink to={`/topics/${topic.slug}/articles`} key={topic._id}>{topic.title}</NavLink></li>;
+                        })}
+                    </ul>
+                </div>
+        </div>
+        :
+        <div></div>;
+    }
     render() {
         return (
-            <div className='container-fluid header'>
-                <div className='row'>
-                    <NavLink to='/' className='col-sm-1'>Home</NavLink>
-                    {Object.keys(this.props.topics.topics).length ?
-                        map(this.props.topics.topics, (topic) => {
-                            return <NavLink to={`/topics/${topic.slug}/articles`} key={topic._id} className='col-sm-1'>{topic.title}</NavLink>;
-
-
-                        }) : 'Loading'
-                    }
-                </div>
-            </div>
+            this.conditionalRender()
         );
     }
 }

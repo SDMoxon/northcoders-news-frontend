@@ -1,6 +1,6 @@
 import * as types from '../types';
 import axios from 'axios';
-import {ROOT} from '../config';
+import { ROOT } from '../config';
 
 export function fetchAllArticles(topic) {
     return function (dispatch) {
@@ -12,8 +12,9 @@ export function fetchAllArticles(topic) {
         axios
             .get(getURL)
             .then(res => {
-
-                dispatch(fetchArticlesSuccess(res.data.articles));
+                setTimeout(() => {
+                    dispatch(fetchArticlesSuccess(res.data.articles));
+                },1000);
             })
             .catch(err => {
                 dispatch(fetchArticlesFailure(err));
@@ -28,9 +29,11 @@ export function fetchSingleArticle(id) {
         axios
             .get(getURL)
             .then(res => {
-                dispatch(fetchArticlesSuccess(res.data.articles.filter(value => {
-                    return value._id === id;
-                })));
+                setTimeout(() => { 
+                    dispatch(fetchArticlesSuccess(res.data.articles.filter(value => {
+                        return value._id === id;
+                    })));
+                },1000);
             })
             .catch(err => {
                 dispatch(fetchArticlesFailure(err));
@@ -66,36 +69,36 @@ export function changeCommentVisibility(payload) {
 }
 
 export function articleAlterVotes(id, vote) {
-	return function (dispatch) {
-		dispatch(articleAlterVotesRequest());
-		axios
-			.put(`${ROOT}/articles/${id}?vote=${vote}`)
-			.then(() => {
-				dispatch(articleAlterVotesSuccess({ _id: id, vote: vote }));
-			})
-			.catch((err) => {
-				dispatch(articleAlterVotesFailure(err));
-			});
-	};
+    return function (dispatch) {
+        dispatch(articleAlterVotesRequest());
+        axios
+            .put(`${ROOT}/articles/${id}?vote=${vote}`)
+            .then(() => {
+                dispatch(articleAlterVotesSuccess({ _id: id, vote: vote }));
+            })
+            .catch((err) => {
+                dispatch(articleAlterVotesFailure(err));
+            });
+    };
 
 }
 
 export function articleAlterVotesRequest() {
-	return {
-		type: types.ARTICLE_ALTER_VOTES_REQUEST,
-	};
+    return {
+        type: types.ARTICLE_ALTER_VOTES_REQUEST,
+    };
 }
 
 export function articleAlterVotesSuccess(payload) {
-	return {
-		type: types.ARTICLE_ALTER_VOTES_SUCCESS,
-		payload: payload
-	};
+    return {
+        type: types.ARTICLE_ALTER_VOTES_SUCCESS,
+        payload: payload
+    };
 }
 
 export function articleAlterVotesFailure(payload) {
-	return {
-		type: types.ARTICLE_ALTER_VOTES_FAILURE,
-		payload: payload
-	};
+    return {
+        type: types.ARTICLE_ALTER_VOTES_FAILURE,
+        payload: payload
+    };
 }
