@@ -64,15 +64,13 @@ class Comments extends Component {
                     </form>
                 </div>
             </div>
-
             :
             <button className="btn btn-default" onClick={this.handleClick}>Add New Comment</button>;
     }
     render() {
         return (
             <div className="comments container">
-                {this.props.comments.loading === false ?
-                    map(this.props.comments.comments, (comment) => {
+                    {map(this.props.comments.comments, (comment) => {
                         return (
                             <div className='row panel' key={comment._id}>
                                 <div className='panel-body'>
@@ -86,9 +84,7 @@ class Comments extends Component {
                                 </div>
                             </div>
                         );
-                    }) : <div className='container-fluid loader'></div> 
-
-                }
+                    })}
                 {this.conditionalRender()}
             </div>
         );

@@ -8,10 +8,7 @@ export function fetchAllComments(id) {
 		axios
 			.get(`${ROOT}/articles/${id}/comments`)
 			.then((res) => {
-				setTimeout(() => {
 					dispatch(fetchCommentsSuccess(res.data.comments));
-				}, 1000);
-
 			})
 			.catch((err) => {
 				dispatch(fetchCommentsFailure(err));
