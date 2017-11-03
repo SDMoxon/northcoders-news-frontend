@@ -1,0 +1,7 @@
+.navbar{
+    background: #e94558;
+}
+
+#bootstrap-override .navtext {
+    color: white;
+}

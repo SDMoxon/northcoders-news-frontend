@@ -1,17 +1,16 @@
+body{
+    background: #e8e5e5
+}
 a {
     text-decoration:none;
     font-family:Arial;
     display: block;
 }
-NavLink{
-    text-decoration:none;
-    font-family:Arial;
-    display: block;
-}
+
 .loader,
 .loader:before,
 .loader:after {
-  background: #ffffff;
+  background: #e8e5e5;
   -webkit-animation: load1 1s infinite ease-in-out;
   animation: load1 1s infinite ease-in-out;
   width: 1em;
@@ -28,10 +27,7 @@ NavLink{
   font-size: 10px;
   position: relative;
   text-indent: -9999em;
-  border-top: 1.1em solid rgba(255, 255, 255, 0.2);
-  border-right: 1.1em solid rgba(255, 255, 255, 0.2);
-  border-bottom: 1.1em solid rgba(255, 255, 255, 0.2);
-  border-left: 1.1em solid rosybrown;
+  border-left: 1.1em solid #e94558;
   -webkit-transform: translateZ(0);
   -ms-transform: translateZ(0);
   transform: translateZ(0);

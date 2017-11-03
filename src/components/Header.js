@@ -3,6 +3,7 @@ import { NavLink } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { fetchAllTopics } from '../actions/topicActions';
 import { map } from 'underscore';
+import '../styles/Header.css';
 
 class Header extends Component {
     componentDidMount() {
@@ -10,12 +11,12 @@ class Header extends Component {
     }
     conditionalRender() {
         return this.props.topics.loading === false ? 
-        <div className='header navbar navbar-default'>
+        <div className='navbar navbar-default'>
                 <div id="navbar" className="collapse navbar-collapse">
                     <ul className="nav navbar-nav">
-                        <li><a href='/'>Home</a></li>
+                        <li><a className='navtext' href='/'>Home</a></li>
                         {map(this.props.topics.topics, (topic) => {
-                            return <li><NavLink to={`/topics/${topic.slug}/articles`} key={topic._id}>{topic.title}</NavLink></li>;
+                            return <li key={topic._id}><NavLink className='navtext' to={`/topics/${topic.slug}/articles`} key={topic._id}>{topic.title}</NavLink></li>;
                         })}
                     </ul>
                 </div>
