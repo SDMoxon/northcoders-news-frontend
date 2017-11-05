@@ -47,25 +47,20 @@ class Articles extends Component {
         this.props.adjustVote(id, vote);
     }
     conditionalRender(article) {
-        if (Object.keys(this.props.articles.articles).length > 1) {
-            return (
-                <ArticleList 
-                key={article._id} 
-                id={this.props.match.params.id} 
-                handleClick={this.handleClick} 
-                handleSubmit={this.handleSubmit} 
-                article={article}/>
-            );
-        }
-        else {
-            return (
-                <SingleArticle key={article._id} 
-                handleClick={this.handleClick} 
-                handleSubmit={this.handleSubmit} 
-                article={article} 
+        return Object.keys(this.props.articles.articles).length > 1 ?
+
+            <ArticleList
+                key={article._id}
+                id={this.props.match.params.id}
+                handleClick={this.handleClick}
+                handleSubmit={this.handleSubmit}
+                article={article} />
+            :
+            <SingleArticle key={article._id}
+                handleClick={this.handleClick}
+                handleSubmit={this.handleSubmit}
+                article={article}
                 commentVisable={this.props.articles.articles[article._id].commentVisable} />
-            );
-        }
     }
     render() {
         return (
@@ -74,8 +69,7 @@ class Articles extends Component {
                 {this.props.articles.loading === false ?
                     map(this.props.articles.articles, (article) => {
                         return this.conditionalRender(article);
-                    }) : <div className='container-fluid loader'></div>
-
+                    }) :  <div className='container-fluid loader'></div>
                 }
             </div>
         );
