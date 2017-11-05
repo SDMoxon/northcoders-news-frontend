@@ -5,3 +5,6 @@
 #bootstrap-override .navtext {
     color: white;
 }
+#bootstrap-override .navtext:hover{
+    color:black
+}
