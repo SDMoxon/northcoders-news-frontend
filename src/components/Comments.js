@@ -70,7 +70,7 @@ class Comments extends Component {
         return (
             <div className="comments container">
                 {Object.keys(this.props.comments.comments).sort((a, b) => {
-                    return this.props.comments.comments[a].votes - this.props.comments.comments[b].votes;
+                    return this.props.comments.comments[b].votes - this.props.comments.comments[a].votes;
                 }).map((comment) => {
                     return (
                         <div className='row panel' key={comment}>

@@ -67,7 +67,7 @@ class Articles extends Component {
 
                 {this.props.articles.loading === false ?
                     Object.keys(this.props.articles.articles).sort((a, b) => {
-                        return this.props.articles.articles[a].votes - this.props.articles.articles[b].votes;
+                        return this.props.articles.articles[b].votes - this.props.articles.articles[a].votes;
                     }).map((article) => {
                         return this.conditionalRender(this.props.articles.articles[article]);
                     }) : <div className='container-fluid loader'></div>
