@@ -8,7 +8,6 @@ import {
     postComment,
     commentAlterVotes
 } from '../actions/commentActions';
-import { map } from 'underscore';
 
 class Comments extends Component {
     constructor(props) {
@@ -70,21 +69,23 @@ class Comments extends Component {
     render() {
         return (
             <div className="comments container">
-                    {map(this.props.comments.comments, (comment) => {
-                        return (
-                            <div className='row panel' key={comment._id}>
-                                <div className='panel-body'>
-                                    <p>{comment.body}</p>
-                                    <p>{comment.created_by}</p>
-                                    <form className="form-inline">
-                                        <p>Votes {comment.votes}</p>
-                                        <button value={`up ${comment._id}`} onClick={this.handleSubmit} className="btn btn-default pull-left" type="submit"> vote up</button>
-                                        <button value={`down ${comment._id}`} onClick={this.handleSubmit} className="btn btn-default pull-left" type="submit"> vote down</button>
-                                    </form>
-                                </div>
+                {Object.keys(this.props.comments.comments).sort((a, b) => {
+                    return this.props.comments.comments[a].votes - this.props.comments.comments[b].votes;
+                }).map((comment) => {
+                    return (
+                        <div className='row panel' key={comment}>
+                            <div className='panel-body'>
+                                <p>{this.props.comments.comments[comment].body}</p>
+                                <p>{this.props.comments.comments[comment].created_by}</p>
+                                <form className="form-inline">
+                                    <p>Votes {this.props.comments.comments[comment].votes}</p>
+                                    <button value={`up ${comment}`} onClick={this.handleSubmit} className="btn btn-default pull-left" type="submit"> vote up</button>
+                                    <button value={`down ${comment}`} onClick={this.handleSubmit} className="btn btn-default pull-left" type="submit"> vote down</button>
+                                </form>
                             </div>
-                        );
-                    })}
+                        </div>
+                    );
+                })}
                 {this.conditionalRender()}
             </div>
         );
@@ -113,8 +114,8 @@ function mapDispatchToProps(dispatch) {
             };
             dispatch(postComment(id, data));
         }),
-        adjustVote: (id,vote) => {
-            dispatch(commentAlterVotes(id,vote));
+        adjustVote: (id, vote) => {
+            dispatch(commentAlterVotes(id, vote));
         }
     };
 }

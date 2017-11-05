@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { fetchAllArticles, changeCommentVisibility, fetchSingleArticle, articleAlterVotes } from '../actions/articleActions';
 import { resetCommentState } from '../actions/commentActions';
-import { map } from 'underscore';
 import SingleArticle from '../containers/SingleArticle';
 import ArticleList from '../containers/ArticleList';
 
@@ -67,9 +66,11 @@ class Articles extends Component {
             <div className="articles container">
 
                 {this.props.articles.loading === false ?
-                    map(this.props.articles.articles, (article) => {
-                        return this.conditionalRender(article);
-                    }) :  <div className='container-fluid loader'></div>
+                    Object.keys(this.props.articles.articles).sort((a, b) => {
+                        return this.props.articles.articles[a].votes - this.props.articles.articles[b].votes;
+                    }).map((article) => {
+                        return this.conditionalRender(this.props.articles.articles[article]);
+                    }) : <div className='container-fluid loader'></div>
                 }
             </div>
         );
