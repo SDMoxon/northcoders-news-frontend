@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { NavLink } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { fetchAllTopics } from '../actions/topicActions';
-import { map } from 'underscore';
 import '../styles/Header.css';
 
 class Header extends Component {
@@ -14,9 +13,9 @@ class Header extends Component {
         <div className='navbar navbar-default'>
                 <div id="navbar" className="collapse navbar-collapse">
                     <ul className="nav navbar-nav">
-                        <li><a className='navtext' href='/'>Home</a></li>
-                        {map(this.props.topics.topics, (topic) => {
-                            return <li key={topic._id}><NavLink className='navtext' to={`/topics/${topic.slug}/articles`} key={topic._id}>{topic.title}</NavLink></li>;
+                        <li><NavLink className='navtext' to='/'>Home</NavLink></li>
+                        {Object.keys(this.props.topics.topics).map((topic) => {
+                            return <li key={topic}><NavLink className='navtext' to={`/topics/${this.props.topics.topics[topic].slug}/articles`} key={topic}>{this.props.topics.topics[topic].title}</NavLink></li>;
                         })}
                     </ul>
                 </div>

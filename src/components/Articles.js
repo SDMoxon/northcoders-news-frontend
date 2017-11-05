@@ -59,7 +59,7 @@ class Articles extends Component {
                 handleClick={this.handleClick}
                 handleSubmit={this.handleSubmit}
                 article={article}
-                commentVisable={this.props.articles.articles[article._id].commentVisable} />
+                commentVisable={this.props.articles.articles[article._id].commentVisable} />;
     }
     render() {
         return (

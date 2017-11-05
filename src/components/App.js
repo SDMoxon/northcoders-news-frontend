@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.css';
 import '../styles/App.css';
 import Articles from './Articles';
+import Home from './Home';
 import Header from './Header';
 import Error from './404';
 
@@ -14,7 +15,7 @@ class App extends Component {
           <div>
             <Header />
             <Switch>
-              <Route exact path="/" component={Articles} />
+              <Route exact path="/" component={Home} />
               <Route exact path="/articles/:articleId" component={Articles}/>
               <Route exact path="/topics/:id/articles" component={Articles} />
               <Route component={Error} />
