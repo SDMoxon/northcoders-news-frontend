@@ -12,7 +12,7 @@ class Header extends Component {
         return this.props.topics.loading === false ?
             <div className='navbar navbar-default'>
                 <div className="navbar-brand project-title"><i className="fa fa-newspaper-o" aria-hidden="true"></i> Northcoders News</div>
-                <div id="navbar" className="collapse navbar-collaps">
+                <div id="navbar" className="collapse navbar-collapse">
                     <ul className="nav navbar-nav pull-right">
                         <li><NavLink className='navtext fa fa-home fa-2x' to='/'></NavLink></li>
                         {Object.keys(this.props.topics.topics).map((topic) => {
