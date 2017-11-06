@@ -8,3 +8,6 @@
 #bootstrap-override .navtext:hover{
     color:black
 }
+#bootstrap-override .project-title{
+    color:white;
+}

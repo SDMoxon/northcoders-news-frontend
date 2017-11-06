@@ -11,7 +11,7 @@ class ArticleList extends Component {
                         <p>{this.props.article.body.split(' ').slice(0,14).join(' ')}...</p>
                         <p>{this.props.article.created_by}</p>
                         <div className="row">
-                            <p className='col-sm-2'>Votes {this.props.article.votes}</p>
+                            <p className='col-sm-1'>Votes {this.props.article.votes}</p>
                             <button className='fa fa-arrow-up' onClick={this.props.handleSubmit.bind(null, this.props.article._id, 'up')} type="submit"></button>
                             <button className='fa fa-arrow-down' onClick={this.props.handleSubmit.bind(null, this.props.article._id, 'down')} type="submit"></button>
                         </div>
