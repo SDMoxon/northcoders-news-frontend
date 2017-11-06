@@ -13,7 +13,7 @@ class Header extends Component {
         <div className='navbar navbar-default'>
                 <div id="navbar" className="collapse navbar-collapse">
                     <ul className="nav navbar-nav">
-                        <li><NavLink className='navtext' to='/'>Home</NavLink></li>
+                        <li><NavLink className='navtext fa fa-home fa-2x' to='/'></NavLink></li>
                         {Object.keys(this.props.topics.topics).map((topic) => {
                             return <li key={topic}><NavLink className='navtext' to={`/topics/${this.props.topics.topics[topic].slug}/articles`} key={topic}>{this.props.topics.topics[topic].title}</NavLink></li>;
                         })}

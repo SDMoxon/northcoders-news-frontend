@@ -4,20 +4,8 @@ import { fetchAllArticles, articleAlterVotes } from '../actions/articleActions';
 import ArticleList from '../containers/ArticleList';
 
 class Articles extends Component {
-    constructor(props) {
-        super(props);
-        this.handleSubmit = this.handleSubmit.bind(this);
-    }
     componentDidMount() {
         this.props.getArticles(this.props.match.params.id);
-    }
-    handleSubmit(event) {
-        event.preventDefault();
-        const eventValues = event.target.value.split(' ');
-
-        const vote = eventValues[0];
-        const id = eventValues[1];
-        this.props.adjustVote(id, vote);
     }
     render() {
         return (
@@ -31,7 +19,7 @@ class Articles extends Component {
                             key={article}
                             id={this.props.match.params.id}
                             handleClick={this.handleClick}
-                            handleSubmit={this.handleSubmit}
+                            handleSubmit={this.props.adjustVote}
                             article={this.props.articles.articles[article]} />;
                 }) : <div className='container-fluid loader'></div>
                 }
@@ -45,6 +33,7 @@ function mapDispatchToProps(dispatch) {
             dispatch(fetchAllArticles(id));
         },
         adjustVote: (id, vote) => {
+            console.log(id,vote, '***********************')
             dispatch(articleAlterVotes(id, vote));
         }
     };

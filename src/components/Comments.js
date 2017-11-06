@@ -15,7 +15,6 @@ class Comments extends Component {
         this.handleClick = this.handleClick.bind(this);
         this.handleTextSubmit = this.handleTextSubmit.bind(this);
         this.handleChange = this.handleChange.bind(this);
-        this.handleSubmit = this.handleSubmit.bind(this);
     }
     componentWillReceiveProps(nextProps) {
         const currentCommentVisible = this.props.comments.newCommentVisible;
@@ -44,14 +43,6 @@ class Comments extends Component {
         this.props.newComment(id, text);
         this.props.resetCommentForm();
     }
-    handleSubmit(event) {
-        event.preventDefault();
-        const eventValues = event.target.value.split(' ');
-
-        const vote = eventValues[0];
-        const id = eventValues[1];
-        this.props.adjustVote(id, vote);
-    }
     conditionalRender() {
         return this.props.comments.newCommentVisible ?
             <div className='panel'>
@@ -77,11 +68,11 @@ class Comments extends Component {
                             <div className='panel-body'>
                                 <p>{this.props.comments.comments[comment].body}</p>
                                 <p>{this.props.comments.comments[comment].created_by}</p>
-                                <form className="form-inline">
-                                    <p>Votes {this.props.comments.comments[comment].votes}</p>
-                                    <button value={`up ${comment}`} onClick={this.handleSubmit} className="btn btn-default pull-left" type="submit"> vote up</button>
-                                    <button value={`down ${comment}`} onClick={this.handleSubmit} className="btn btn-default pull-left" type="submit"> vote down</button>
-                                </form>
+                                <div className="row">
+                                    <p className='col-sm-2'>Votes {this.props.comments.comments[comment].votes}</p>
+                                    <button onClick={this.props.adjustVote.bind(null, comment, 'up')} type="submit"> <i className="fa fa-arrow-up" aria-hidden="true"></i></button>
+                                    <button onClick={this.props.adjustVote.bind(null, comment, 'down')} type="submit"> <i className="fa fa-arrow-down" aria-hidden="true"></i></button>
+                                </div>
                             </div>
                         </div>
                     );

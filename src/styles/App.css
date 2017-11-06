@@ -6,7 +6,10 @@ a {
     font-family:Arial;
     display: block;
 }
-
+button{
+  border: none;
+  background-color: white; 
+}
 .loader,
 .loader:before,
 .loader:after {

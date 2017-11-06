@@ -10,7 +10,6 @@ class Articles extends Component {
         super(props);
         this.handleClick = this.handleClick.bind(this);
         this.conditionalRender = this.conditionalRender.bind(this);
-        this.handleSubmit = this.handleSubmit.bind(this);
     }
     componentWillReceiveProps(nextProps) {
         const currentTopic = this.props.match.params.id;
@@ -37,14 +36,6 @@ class Articles extends Component {
         this.props.commentVisibility(articleId);
         this.props.removeUnsavedComments();
     }
-    handleSubmit(event) {
-        event.preventDefault();
-        const eventValues = event.target.value.split(' ');
-
-        const vote = eventValues[0];
-        const id = eventValues[1];
-        this.props.adjustVote(id, vote);
-    }
     conditionalRender(article) {
         return Object.keys(this.props.articles.articles).length > 1 ?
 
@@ -52,12 +43,12 @@ class Articles extends Component {
                 key={article._id}
                 id={this.props.match.params.id}
                 handleClick={this.handleClick}
-                handleSubmit={this.handleSubmit}
+                handleSubmit={this.props.adjustVote}
                 article={article} />
             :
             <SingleArticle key={article._id}
                 handleClick={this.handleClick}
-                handleSubmit={this.handleSubmit}
+                handleSubmit={this.props.adjustVote}
                 article={article}
                 commentVisable={this.props.articles.articles[article._id].commentVisable} />;
     }
