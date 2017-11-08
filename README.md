@@ -1,7 +1,7 @@
 # [NORTHCODRS NEWS](frozen-ocean-49597.herokuapp.com)
 A project to highlight skills including React, Redux and React-Router 
 
-*git aGetting Started*
+**Getting Started**
 
 First, ensure you have Node v7.9.0 installed
 
