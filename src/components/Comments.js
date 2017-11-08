@@ -69,7 +69,7 @@ class Comments extends Component {
                                 <p>{this.props.comments.comments[comment].body}</p>
                                 <p>{this.props.comments.comments[comment].created_by}</p>
                                 <div className="row">
-                                    <p className='col-sm-2'>Votes {this.props.comments.comments[comment].votes}</p>
+                                    <p className='col-sm-1'>Votes {this.props.comments.comments[comment].votes}</p>
                                     <button onClick={this.props.adjustVote.bind(null, comment, 'up')} type="submit"> <i className="fa fa-arrow-up" aria-hidden="true"></i></button>
                                     <button onClick={this.props.adjustVote.bind(null, comment, 'down')} type="submit"> <i className="fa fa-arrow-down" aria-hidden="true"></i></button>
                                 </div>

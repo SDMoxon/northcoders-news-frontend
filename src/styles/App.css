@@ -10,6 +10,16 @@ button{
   border: none;
   background-color: white; 
 }
+
+
+.fa-arrow-up{
+  color:rgb(2, 179, 2);
+}
+
+.fa-arrow-down{
+  color:rgb(179, 26, 2);
+}
+
 .loader,
 .loader:before,
 .loader:after {

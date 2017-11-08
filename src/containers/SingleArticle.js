@@ -11,7 +11,7 @@ class SingleArticle extends Component {
                         <p>{this.props.article.body}</p>
                         <p>{this.props.article.created_by}</p>
                         <div className="row">
-                            <p className='col-sm-2'>Votes {this.props.article.votes}</p>
+                            <p className='col-sm-1'>Votes {this.props.article.votes}</p>
                             <button onClick={this.props.handleSubmit.bind(null, this.props.article._id, 'up')} type="submit"> <i className="fa fa-arrow-up" aria-hidden="true"></i></button>
                             <button onClick={this.props.handleSubmit.bind(null, this.props.article._id, 'down')} type="submit"> <i className="fa fa-arrow-down" aria-hidden="true"></i></button>
                         </div>
