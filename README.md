@@ -13,7 +13,7 @@ then
 
     npm install
 
-    npm run dev
+    npm start
 
 To run the tests:
 
