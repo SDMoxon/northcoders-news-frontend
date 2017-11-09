@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { changeCommentVisibility, fetchSingleArticle, articleAlterVotes } from '../actions/articleActions';
 import { resetCommentState } from '../actions/commentActions';
-import SingleArticle from '../containers/SingleArticle';
+import SingleArticle from '../statelessComponents/SingleArticle';
 
 class Articles extends Component {
     constructor(props) {

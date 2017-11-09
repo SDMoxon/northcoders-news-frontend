@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { fetchAllArticles, articleAlterVotes } from '../actions/articleActions';
-import ArticleList from '../containers/ArticleList';
+import ArticleList from '../statelessComponents/ArticleList';
 
 class Articles extends Component {
     constructor(props) {
