@@ -7,7 +7,7 @@ class SingleArticle extends Component {
             <div className='row '>
                 <div className='panel panel'>
                     <div className='panel-body'>
-                        <p>{this.props.article.title}</p>
+                        <h4>{this.props.article.title}</h4>
                         <p>{this.props.article.body}</p>
                         <p>{this.props.article.created_by}</p>
                         <div className="row">

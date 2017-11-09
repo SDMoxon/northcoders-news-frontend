@@ -8,7 +8,7 @@ import {
     postComment,
     commentAlterVotes
 } from '../actions/commentActions';
-
+import '../styles/Comments.css'
 class Comments extends Component {
     constructor(props) {
         super(props);
@@ -47,7 +47,7 @@ class Comments extends Component {
         return this.props.comments.newCommentVisible ?
             <div className='panel'>
                 <div className="panel-body">
-                    <textarea value={this.props.comments.newCommentInput} onChange={this.handleChange} placeholder="Write your comment here!" className="pb-cmnt-textarea"></textarea>
+                    <textarea value={this.props.comments.newCommentInput} onChange={this.handleChange} placeholder="Write your comment here!" className="pb-cmnt-textarea comments-box"></textarea>
                     <form className="form-inline">
                         <button onClick={this.handleTextSubmit} className="btn btn-default pull-left" type="submit">Submit</button>
                         <button onClick={this.handleClick} className="btn btn-default pull-left" type="button">Cancel</button>

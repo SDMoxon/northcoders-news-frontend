@@ -11,3 +11,11 @@
 #bootstrap-override .project-title{
     color:white;
 }
+.news-icon{
+    padding-right: 10px;
+
+}
+#bootstrap-override .home-icon{
+    text-align: center;
+    margin-top: 10px;
+}

@@ -11,12 +11,12 @@ class Header extends Component {
     conditionalRender() {
         return this.props.topics.loading === false ?
             <div className='navbar navbar-default'>
-                <div className="navbar-brand project-title"><p><i className="fa fa-newspaper-o" aria-hidden="true"></i>Northcoders News</p></div>
+                <div className="navbar-brand project-title col-sm-4"><p><i className="fa fa-newspaper-o news-icon" aria-hidden="true"></i>Northcoders News</p></div>
                 <div id="navbar" className="collapse navbar-collapse">
+                    <NavLink className='navtext fa fa-home fa-2x home-icon col-sm-4' to='/'></NavLink>
                     <ul className="nav navbar-nav pull-right">
-                        <li><NavLink className='navtext fa fa-home fa-2x' to='/'></NavLink></li>
                         {Object.keys(this.props.topics.topics).map((topic) => {
-                            return <li key={topic}><NavLink className='navtext' to={`/topics/${this.props.topics.topics[topic].slug}/articles`} key={topic}>{this.props.topics.topics[topic].title}</NavLink></li>;
+                            return <li key={topic}><NavLink className='navtext col-sm-1' to={`/topics/${this.props.topics.topics[topic].slug}/articles`} key={topic}>{this.props.topics.topics[topic].title}</NavLink></li>;
                         })}
                     </ul>
                 </div>

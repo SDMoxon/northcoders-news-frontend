@@ -7,7 +7,7 @@ class ArticleList extends Component {
             <div className='row '>
                 <div className='panel panel'>
                     <div className='panel-body'>
-                        <NavLink to={`/articles/${this.props.article._id}`} >{this.props.article.title}</NavLink>
+                       <h4> <NavLink to={`/articles/${this.props.article._id}`} >{this.props.article.title}</NavLink></h4>
                         <p>{this.props.article.body.split(' ').slice(0,14).join(' ')}...</p>
                         <p>{this.props.article.created_by}</p>
                         <div className="row">
