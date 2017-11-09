@@ -91,7 +91,6 @@ export function postCommentFailure(error) {
 
 
 export function commentAlterVotes(id, vote) {
-	console.log('fired');
 	return function (dispatch) {
 		dispatch(commentAlterVotesRequest());
 		axios
@@ -100,7 +99,6 @@ export function commentAlterVotes(id, vote) {
 				dispatch(commentAlterVotesSuccess({ _id: id, vote: vote }));
 			})
 			.catch((err) => {
-				console.log(err.message);
 				dispatch(commentAlterVotesFailure(err));
 			});
 	};

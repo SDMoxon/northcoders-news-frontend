@@ -10,11 +10,10 @@ export function fetchAllTopics() {
             .then(res => {
                 setTimeout(() => {
                     dispatch(fetchTopicsSuccess(res.data.topics));
-                }, 1000);
+                }, 100);
 
             })
             .catch(err => {
-                console.log(err);
                 dispatch(fetchTopicsFailure(err));
             });
     };

@@ -14,7 +14,7 @@ export function fetchAllArticles(topic) {
             .then(res => {
                 setTimeout(() => {
                     dispatch(fetchArticlesSuccess(res.data.articles));
-                },1000);
+                },100);
             })
             .catch(err => {
                 dispatch(fetchArticlesFailure(err));
@@ -33,7 +33,7 @@ export function fetchSingleArticle(id) {
                     dispatch(fetchArticlesSuccess(res.data.articles.filter(value => {
                         return value._id === id;
                     })));
-                },1000);
+                },100);
             })
             .catch(err => {
                 dispatch(fetchArticlesFailure(err));
