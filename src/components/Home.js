@@ -33,7 +33,6 @@ function mapDispatchToProps(dispatch) {
             dispatch(fetchAllArticles(id));
         },
         adjustVote: (id, vote) => {
-            console.log(id,vote, '***********************')
             dispatch(articleAlterVotes(id, vote));
         }
     };
