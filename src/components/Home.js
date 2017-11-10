@@ -5,9 +5,19 @@ import ArticleList from '../statelessComponents/ArticleList';
 
 class Home extends Component {
     componentDidMount() {
+        // checks to see if there are different topics in the articles object, if not request the full articles list
+        const articleArray = Object.keys(this.props.articles.articles);
+        const refreshArticles = articleArray.reduce((acc, article, i) => {
+            const nextArticle = articleArray[i + 1];
+            if (i < articleArray.length - 2) {
+                if (this.props.articles.articles[article].belongs_to !== this.props.articles.articles[nextArticle].belongs_to) {
+                    acc = false;
+                }
+            }
+            return acc;
+        }, true);
 
-        if (Object.keys(this.props.articles.articles).length === 0) {
-
+        if (Object.keys(this.props.articles.articles).length === 0 || refreshArticles) {
             this.props.getArticles();
         }
     }
@@ -25,7 +35,7 @@ class Home extends Component {
                             handleClick={this.handleClick}
                             handleSubmit={this.props.adjustVote}
                             article={this.props.articles.articles[article]} />;
-                }) : <div className='container-fluid loader'></div>
+                    }) : <div className='container-fluid loader'></div>
                 }
             </div>
         );

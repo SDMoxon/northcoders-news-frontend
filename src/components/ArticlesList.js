@@ -13,7 +13,19 @@ class Articles extends Component {
         }
     }
     componentDidMount() {
+        
+        // checks to see if all topics mach the current in the articles object, if not request the topic specific list
+        const articlesArray = Object.keys(this.props.articles.articles)
+        const refreshArticles = articlesArray.reduce((acc, article) => {
+            if (this.props.articles.articles[article].belongs_to !== this.props.match.params.id) {
+                acc = true;
+            }
+            return acc;
+        }, false);
+
+        if (Object.keys(this.props.articles.articles).length === 0 || refreshArticles) {
             this.props.getArticles(this.props.match.params.id);
+        }
     }
     render() {
         return (
