@@ -4,7 +4,7 @@ import {processListData} from '../utils';
 
 export const initialState = {
     articles: {},
-    loading: false,
+    loading: true,
     error: null,
 };
 

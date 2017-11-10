@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { changeCommentVisibility, fetchSingleArticle, articleAlterVotes } from '../actions/articleActions';
+import { changeCommentVisibility, fetchAllArticles, articleAlterVotes } from '../actions/articleActions';
 import { resetCommentState } from '../actions/commentActions';
 import SingleArticle from '../statelessComponents/SingleArticle';
 
@@ -11,7 +11,9 @@ class Articles extends Component {
 
     }
     componentDidMount() {
-        this.props.getArticle(this.props.match.params.articleId);
+        if (this.props.articles.articles[this.props.match.params.articleId] === undefined) {
+            this.props.getArticles();
+        } 
     }
     handleClick(event) {
         const articleId = event.target.value;
@@ -21,15 +23,13 @@ class Articles extends Component {
     render() {
         return (
             <div className="article container">
-                {this.props.articles.loading === false ?
-                    Object.keys(this.props.articles.articles).map((article) => {
-                        
-                       return  <SingleArticle key={article}
+                {this.props.articles.loading === false ? 
+                   <SingleArticle key={this.props.articles.articles[this.props.match.params.articleId]._id}
                             handleClick={this.handleClick}
                             handleSubmit={this.props.adjustVote}
-                            article={this.props.articles.articles[article]}
-                            commentVisable={this.props.articles.articles[article].commentVisable} />;
-                    }) : <div className='container-fluid loader'></div>
+                            article={this.props.articles.articles[this.props.match.params.articleId]}
+                            commentVisable={this.props.articles.articles[this.props.match.params.articleId].commentVisable} />
+                    : <div className='container-fluid loader'></div>
                 }
             </div>
         );
@@ -40,8 +40,8 @@ function mapDispatchToProps(dispatch) {
         commentVisibility: (id) => {
             dispatch(changeCommentVisibility(id));
         },
-        getArticle: (articleId) => {
-            dispatch(fetchSingleArticle(articleId));
+        getArticles: (id) => {
+            dispatch(fetchAllArticles(id));
         },
         removeUnsavedComments: () => {
             dispatch(resetCommentState());

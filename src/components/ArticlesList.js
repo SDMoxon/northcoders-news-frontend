@@ -4,10 +4,6 @@ import { fetchAllArticles, articleAlterVotes } from '../actions/articleActions';
 import ArticleList from '../statelessComponents/ArticleList';
 
 class Articles extends Component {
-    constructor(props) {
-        super(props);
-        this.handleClick = this.handleClick.bind(this);
-    }
     componentWillReceiveProps(nextProps) {
         const currentTopic = this.props.match.params.id;
         const nextTopic = nextProps.match.params.id;
@@ -17,12 +13,9 @@ class Articles extends Component {
         }
     }
     componentDidMount() {
-        this.props.getArticles(this.props.match.params.id);
-    }
-    handleClick(event) {
-        const articleId = event.target.value;
-        this.props.commentVisibility(articleId);
-        this.props.removeUnsavedComments();
+        if (Object.keys(this.props.articles.articles).length === 0) {
+            this.props.getArticles(this.props.match.params.id);
+        }
     }
     render() {
         return (
@@ -32,7 +25,7 @@ class Articles extends Component {
                     Object.keys(this.props.articles.articles).sort((a, b) => {
                         return this.props.articles.articles[b].votes - this.props.articles.articles[a].votes;
                     }).map((article) => {
-                       return  <ArticleList
+                        return <ArticleList
                             key={article}
                             id={this.props.match.params.id}
                             handleSubmit={this.props.adjustVote}
