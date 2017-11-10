@@ -16,13 +16,6 @@ class Comments extends Component {
         this.handleTextSubmit = this.handleTextSubmit.bind(this);
         this.handleChange = this.handleChange.bind(this);
     }
-    componentWillReceiveProps(nextProps) {
-        const currentCommentVisible = this.props.comments.newCommentVisible;
-        const nextCommentVisible = nextProps.comments.newCommentVisible;
-        if (nextCommentVisible !== currentCommentVisible) {
-            this.props.getComments(this.props.belongsTo);
-        }
-    }
     componentDidMount() {
         this.props.getComments(this.props.belongsTo);
     }
