@@ -12,28 +12,7 @@ export function fetchAllArticles(topic) {
         axios
             .get(getURL)
             .then(res => {
-                setTimeout(() => {
                     dispatch(fetchArticlesSuccess(res.data.articles));
-                },100);
-            })
-            .catch(err => {
-                dispatch(fetchArticlesFailure(err));
-            });
-    };
-}
-
-export function fetchSingleArticle(id) {
-    return function (dispatch) {
-        const getURL = `${ROOT}/articles`;
-        dispatch(fetchArticlesRequest());
-        axios
-            .get(getURL)
-            .then(res => {
-                setTimeout(() => { 
-                    dispatch(fetchArticlesSuccess(res.data.articles.filter(value => {
-                        return value._id === id;
-                    })));
-                },100);
             })
             .catch(err => {
                 dispatch(fetchArticlesFailure(err));

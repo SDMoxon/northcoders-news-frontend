@@ -3,9 +3,13 @@ import { connect } from 'react-redux';
 import { fetchAllArticles, articleAlterVotes } from '../actions/articleActions';
 import ArticleList from '../statelessComponents/ArticleList';
 
-class Articles extends Component {
+class Home extends Component {
     componentDidMount() {
-        this.props.getArticles(this.props.match.params.id);
+        console.log(Object.keys(this.props.articles.articles).length === 0);
+        if (Object.keys(this.props.articles.articles).length === 0) {
+            console.log(Object.keys(this.props.articles.articles).length === 0);
+            this.props.getArticles();
+        }
     }
     render() {
         return (
@@ -46,4 +50,4 @@ function mapStateToProps(state) {
     };
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Articles);
+export default connect(mapStateToProps, mapDispatchToProps)(Home);
