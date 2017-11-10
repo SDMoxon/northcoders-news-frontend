@@ -13,9 +13,7 @@ class Articles extends Component {
         }
     }
     componentDidMount() {
-        if (Object.keys(this.props.articles.articles).length === 0) {
             this.props.getArticles(this.props.match.params.id);
-        }
     }
     render() {
         return (

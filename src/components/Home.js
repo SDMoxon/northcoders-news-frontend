@@ -5,9 +5,9 @@ import ArticleList from '../statelessComponents/ArticleList';
 
 class Home extends Component {
     componentDidMount() {
-        console.log(Object.keys(this.props.articles.articles).length === 0);
+
         if (Object.keys(this.props.articles.articles).length === 0) {
-            console.log(Object.keys(this.props.articles.articles).length === 0);
+
             this.props.getArticles();
         }
     }
