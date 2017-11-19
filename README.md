@@ -1,4 +1,4 @@
-# [NORTHCODRS NEWS](https://northcoders-news-smoxon.herokuapp.com/)
+# [NORTHCODRS NEWS](https://northcoders-news-smoxon.herokuapp.com/) 
 A project to highlight skills including React, Redux and React-Router 
 
 **Getting Started**
