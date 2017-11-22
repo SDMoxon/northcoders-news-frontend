@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { changeCommentVisibility, fetchAllArticles, articleAlterVotes } from '../actions/articleActions';
 import { resetCommentState } from '../actions/commentActions';
 import SingleArticle from '../statelessComponents/SingleArticle';
+import { Redirect } from 'react-router';
 
 class Articles extends Component {
     constructor(props) {
@@ -21,6 +22,9 @@ class Articles extends Component {
         this.props.removeUnsavedComments();
     }
     render() {
+        if ((/301/).test(this.props.error)) {
+            return <Redirect to="/authentication" />;
+        }
         return (
             <div className="article container">
                 {this.props.articles.loading === false ? 

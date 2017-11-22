@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { fetchAllArticles, articleAlterVotes } from '../actions/articleActions';
 import ArticleList from '../statelessComponents/ArticleList';
+import { Redirect } from 'react-router';
 
 class Home extends Component {
     componentDidMount() {
@@ -22,23 +23,28 @@ class Home extends Component {
         }
     }
     render() {
-        return (
-            <div className="home container">
+        if ( (/301/).test(this.props.error)) {
+            return <Redirect to="/authentication" />;
+        }
+        else {
+            return (
+                <div className="home container">
 
-                {this.props.articles.loading === false ?
-                    Object.keys(this.props.articles.articles).sort((a, b) => {
-                        return this.props.articles.articles[b].votes - this.props.articles.articles[a].votes;
-                    }).map((article) => {
-                        return <ArticleList
-                            key={article}
-                            id={this.props.match.params.id}
-                            handleClick={this.handleClick}
-                            handleSubmit={this.props.adjustVote}
-                            article={this.props.articles.articles[article]} />;
-                    }) : <div className='container-fluid loader'></div>
-                }
-            </div>
-        );
+                    {this.props.articles.loading === false ?
+                        Object.keys(this.props.articles.articles).sort((a, b) => {
+                            return this.props.articles.articles[b].votes - this.props.articles.articles[a].votes;
+                        }).map((article) => {
+                            return <ArticleList
+                                key={article}
+                                id={this.props.match.params.id}
+                                handleClick={this.handleClick}
+                                handleSubmit={this.props.adjustVote}
+                                article={this.props.articles.articles[article]} />;
+                        }) : <div className='container-fluid loader'></div>
+                    }
+                </div>
+            );
+        }
     }
 }
 function mapDispatchToProps(dispatch) {

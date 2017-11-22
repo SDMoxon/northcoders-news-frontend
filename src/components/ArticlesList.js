@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { fetchAllArticles, articleAlterVotes } from '../actions/articleActions';
 import ArticleList from '../statelessComponents/ArticleList';
+import { Redirect } from 'react-router';
 
 class Articles extends Component {
     componentWillReceiveProps(nextProps) {
@@ -28,6 +29,9 @@ class Articles extends Component {
         }
     }
     render() {
+        if ((/401/).test(this.props.error)) {
+            return <Redirect to="/authentication" />;
+        }
         return (
             <div className="articles-list container">
 
