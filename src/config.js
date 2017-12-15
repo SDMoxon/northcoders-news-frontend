@@ -1,3 +1,4 @@
 module.exports = {
-    ROOT: 'https://northcodersnews-sm.herokuapp.com/api'
+    ROOT: 'https://northcoders-news-smoxon.herokuapp.com//api',
+    FORMROOT: 'https://northcoders-news-smoxon.herokuapp.com/'
 } 
