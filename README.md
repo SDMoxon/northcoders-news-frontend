@@ -1,4 +1,4 @@
-# [NORTHCODRS NEWS](https://northcoders-news-smoxon.herokuapp.com/) 
+# NORTHCODRS NEWS 
 A project to highlight skills including React, Redux and React-Router 
 
 **Getting Started**
@@ -24,3 +24,10 @@ Built With
 - Javascript
 - React
 - Create React App
+
+#Loging In 
+
+At the moment please feel free to use the guest login 
+
+username: guest
+password: password
