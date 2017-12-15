@@ -6,11 +6,11 @@ export function fetchAllTopics() {
     return function (dispatch) {
         dispatch(fetchTopicsRequest());
         axios
-            .get(`${ROOT}/topics`)
+            .get(`${ROOT}/topics`,{withCredentials:true})
             .then(res => {
-                setTimeout(() => {
-                    dispatch(fetchTopicsSuccess(res.data.topics));
-                }, 100);
+
+                dispatch(fetchTopicsSuccess(res.data.topics));
+
 
             })
             .catch(err => {

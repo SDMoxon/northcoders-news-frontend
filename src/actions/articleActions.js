@@ -10,9 +10,9 @@ export function fetchAllArticles(topic) {
             : '/articles';
         dispatch(fetchArticlesRequest());
         axios
-            .get(getURL)
+            .get(getURL, { withCredentials: true })
             .then(res => {
-                    dispatch(fetchArticlesSuccess(res.data.articles));
+                dispatch(fetchArticlesSuccess(res.data.articles));
             })
             .catch(err => {
                 dispatch(fetchArticlesFailure(err));
@@ -51,7 +51,7 @@ export function articleAlterVotes(id, vote) {
     return function (dispatch) {
         dispatch(articleAlterVotesRequest());
         axios
-            .put(`${ROOT}/articles/${id}?vote=${vote}`)
+            .put(`${ROOT}/articles/${id}?vote=${vote}`, { withCredentials: true })
             .then(() => {
                 dispatch(articleAlterVotesSuccess({ _id: id, vote: vote }));
             })
