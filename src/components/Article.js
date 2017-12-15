@@ -11,10 +11,10 @@ class Articles extends Component {
         this.handleClick = this.handleClick.bind(this);
 
     }
-    componentDidMount() {
+    componentWillMount() {
         if (this.props.articles.articles[this.props.match.params.articleId] === undefined) {
             this.props.getArticles();
-        } 
+        }
     }
     handleClick(event) {
         const articleId = event.target.value;
@@ -22,17 +22,17 @@ class Articles extends Component {
         this.props.removeUnsavedComments();
     }
     render() {
-        if ((/301/).test(this.props.error)) {
-            return <Redirect to="/authentication" />;
+        if (!this.props.login.authorised) {
+            return <Redirect to="/login" />;
         }
         return (
             <div className="article container">
-                {this.props.articles.loading === false ? 
-                   <SingleArticle key={this.props.articles.articles[this.props.match.params.articleId]._id}
-                            handleClick={this.handleClick}
-                            handleSubmit={this.props.adjustVote}
-                            article={this.props.articles.articles[this.props.match.params.articleId]}
-                            commentVisable={this.props.articles.articles[this.props.match.params.articleId].commentVisable} />
+                {this.props.articles.loading === false ?
+                    <SingleArticle key={this.props.articles.articles[this.props.match.params.articleId]._id}
+                        handleClick={this.handleClick}
+                        handleSubmit={this.props.adjustVote}
+                        article={this.props.articles.articles[this.props.match.params.articleId]}
+                        commentVisable={this.props.articles.articles[this.props.match.params.articleId].commentVisable} />
                     : <div className='container-fluid loader'></div>
                 }
             </div>
@@ -60,7 +60,8 @@ function mapStateToProps(state) {
     return {
         articles: state.articles,
         loading: state.articles.loading,
-        error: state.articles.error
+        error: state.articles.error,
+        login: state.login
     };
 }
 

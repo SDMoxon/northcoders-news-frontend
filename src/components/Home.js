@@ -5,7 +5,7 @@ import ArticleList from '../statelessComponents/ArticleList';
 import { Redirect } from 'react-router';
 
 class Home extends Component {
-    componentDidMount() {
+    componentWillMount() {
         // checks to see if there are different topics in the articles object, if not request the full articles list
         const articleArray = Object.keys(this.props.articles.articles);
         const refreshArticles = articleArray.reduce((acc, article, i) => {
@@ -23,13 +23,12 @@ class Home extends Component {
         }
     }
     render() {
-        if ( (/301/).test(this.props.error)) {
-            return <Redirect to="/authentication" />;
+        if (!this.props.login.authorised) {
+            return <Redirect to="/login" />;
         }
         else {
             return (
                 <div className="home container">
-
                     {this.props.articles.loading === false ?
                         Object.keys(this.props.articles.articles).sort((a, b) => {
                             return this.props.articles.articles[b].votes - this.props.articles.articles[a].votes;
@@ -62,7 +61,8 @@ function mapStateToProps(state) {
     return {
         articles: state.articles,
         loading: state.articles.loading,
-        error: state.articles.error
+        error: state.articles.error,
+        login: state.login
     };
 }
 

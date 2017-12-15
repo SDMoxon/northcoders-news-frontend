@@ -13,8 +13,8 @@ class Articles extends Component {
             this.props.getArticles(nextProps.match.params.id);
         }
     }
-    componentDidMount() {
-        
+    componentWillMount() {
+
         // checks to see if all topics mach the current in the articles object, if not request the topic specific list
         const articlesArray = Object.keys(this.props.articles.articles)
         const refreshArticles = articlesArray.reduce((acc, article) => {
@@ -29,12 +29,11 @@ class Articles extends Component {
         }
     }
     render() {
-        if ((/401/).test(this.props.error)) {
-            return <Redirect to="/authentication" />;
+        if (!this.props.login.authorised) {
+            return <Redirect to="/login" />;
         }
         return (
             <div className="articles-list container">
-
                 {this.props.articles.loading === false ?
                     Object.keys(this.props.articles.articles).sort((a, b) => {
                         return this.props.articles.articles[b].votes - this.props.articles.articles[a].votes;
@@ -65,7 +64,8 @@ function mapStateToProps(state) {
     return {
         articles: state.articles,
         loading: state.articles.loading,
-        error: state.articles.error
+        error: state.articles.error,
+        login: state.login
     };
 }
 

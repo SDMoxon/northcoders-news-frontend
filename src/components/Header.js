@@ -8,8 +8,13 @@ class Header extends Component {
     componentDidMount() {
         this.props.getTopics();
     }
-    conditionalRender() {
-        return this.props.topics.loading === false ?
+    componentWillReceiveProps(nextProps) {
+        if (this.props.login !== nextProps.login) {
+            this.props.getTopics();
+        }
+    }
+    render() {
+        return this.props.login ?
             <div className='navbar navbar-default'>
                 <div className="navbar-brand project-title col-sm-4"><p><i className="fa fa-newspaper-o news-icon" aria-hidden="true"></i>Northcoders News</p></div>
                 <div id="navbar" className="collapse navbar-collapse">
@@ -22,12 +27,12 @@ class Header extends Component {
                 </div>
             </div>
             :
-            <div></div>;
-    }
-    render() {
-        return (
-            this.conditionalRender()
-        );
+            <div className='navbar navbar-default'>
+                <div className="navbar-brand project-title col-sm-4"><p><i className="fa fa-newspaper-o news-icon" aria-hidden="true"></i>Northcoders News</p></div>
+                <div id="navbar" className="collapse navbar-collapse">
+                    <NavLink className='navtext fa fa-home fa-2x home-icon col-sm-4' to='/'></NavLink>
+                </div>
+            </div>;
     }
 }
 
@@ -42,8 +47,8 @@ function mapDispatchToProps(dispatch) {
 function mapStateToProps(state) {
     return {
         topics: state.topics,
-        loading: state.topics.loading,
-        error: state.topics.error
+        error: state.topics.error,
+        login: state.login.authorised
     };
 }
 
