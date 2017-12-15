@@ -26,7 +26,6 @@ Built With
 - Create React App
 
 # Loging In 
-
 At the moment please feel free to use the guest login 
 
 username: guest
