@@ -5,7 +5,8 @@ import '../styles/App.css';
 import ArticlesList from './ArticlesList';
 import Article from './Article';
 import Home from './Home';
-import Authentication from './Authentication';
+import Login from './Login';
+import SignUp from './SignUp';
 import Header from './Header';
 import Error from './404';
 
@@ -18,7 +19,8 @@ class App extends Component {
             <Header />
             <Switch>
               <Route exact path="/" component={Home} />
-              <Route exact path="/authentication" component={Authentication} />
+              <Route exact path="/login" component={Login} />
+              <Route exact path="/signup" component={SignUp} />
               <Route exact path="/articles/:articleId" component={Article}/>
               <Route exact path="/topics/:id/articles" component={ArticlesList} />
               <Route component={Error} />
