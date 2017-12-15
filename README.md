@@ -25,8 +25,9 @@ Built With
 - React
 - Create React App
 
-# Loging In 
-At the moment please feel free to use the guest login 
+Loging In 
 
-username: guest
-password: password
+At the moment please use the guest login 
+
+- username: guest
+- password: password
