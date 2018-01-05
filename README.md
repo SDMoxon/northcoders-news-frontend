@@ -1,4 +1,4 @@
-# NORTHCODRS NEWS 
+# NORTHCODERS NEWS 
 A project to highlight skills including React, Redux and React-Router 
 
 Live version: [https://northcoders-news-smoxon.herokuapp.com](https://northcoders-news-smoxon.herokuapp.com) 
